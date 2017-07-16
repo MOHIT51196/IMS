@@ -1,0 +1,6 @@
+create table user_master (userid INT PRIMARY KEY AUTO_INCREMENT,username VARCHAR(200) UNIQUE NOT NULL,password varchar(200) NOT NULL,name VARCHAR(255) NOT NULL,
+gender CHAR(1),dob VARCHAR(50),email VARCHAR(255) NOT NULL,phone VARCHAR(10),auth_status CHAR(1),status CHAR(1) NOT NULL,role_status CHAR(1) NOT NULL);
+
+create table student_master_tbl(sid VARCHAR(40) PRIMARY KEY,name VARCHAR(200) NOT NULL,gender CHAR(1),dob VARCHAR(50));
+
+create table student_pr_tbl(sid,fname,femail,fphone,mname,memail,mphone);
