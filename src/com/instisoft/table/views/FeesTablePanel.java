@@ -1,6 +1,4 @@
 package com.instisoft.table.views;
-import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -14,13 +12,11 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -88,53 +84,19 @@ public class FeesTablePanel extends JPanel {
 				{"1.", "Anmol Raj", "012", "Advanced Java", "6000", "8588910454", "anmolarora1711@gmail.com"}
 				};
 		
-		TableModel model = new DefaultTableModel(data, columnNames)
-		{
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			public boolean isCellEditable(int row, int column){
-				return false;
-			}
-		};
-	
-		Toggle isEditable = new Toggle(false);
-	
-		JTable table = new JTable(model)
-		{
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			public boolean isCellEditable(int row, int column){
-				return isEditable.getVal();
-			}
-		};
+		final Toggle isEditable = new Toggle(false);
 		
-		table.setSelectionMode(SINGLE_SELECTION);
+		Table table = new Table(columnNames, data, isEditable);
 		tableView(table);
-		
-		JTableHeader header = table.getTableHeader();
-		header.setBackground(new Color(102, 255, 153));
-	    header.setForeground(Color.WHITE);
-	    header.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBackground(Color.GRAY);
-		scrollPane.setOpaque(true);
-		scrollPane.setViewportView(table);
-		tablePanel.add(scrollPane,BorderLayout.CENTER);
+	    tablePanel.add(table.getScrollPane(),BorderLayout.CENTER);  
 		
 		JButton edit = new JButton("Edit");
 		edit.setBounds(16, 519, 134, 35);
 		modifyButton(edit);
 		edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				isEditable.toggle();
-				((DefaultTableModel) model).fireTableStructureChanged();
+				table.getEditable().toggle();
+				((DefaultTableModel) table.getModel()).fireTableStructureChanged();
 				tableView(table);
 			}
 		});
@@ -149,7 +111,7 @@ public class FeesTablePanel extends JPanel {
 	        @Override
 	        public void actionPerformed(ActionEvent arg0){
 	        	if(table.getSelectedRow() != -1){
-	        		((DefaultTableModel) model).removeRow(table.getSelectedRow());
+	        		((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
 	        	}
 	        }
 	    });
@@ -160,7 +122,7 @@ public class FeesTablePanel extends JPanel {
 	    modifyButton(btnSortByName);
 	    btnSortByName.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+	    		TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
 	    		table.setRowSorter(sorter);
 	    		List<RowSorter.SortKey> list = new ArrayList<>();
 	    		list.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
@@ -176,7 +138,7 @@ public class FeesTablePanel extends JPanel {
 	    btnSortById.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    		TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+	    		TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
 	    		table.setRowSorter(sorter);
 	    		List<RowSorter.SortKey> list = new ArrayList<>();
 	    		list.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
@@ -193,7 +155,7 @@ public class FeesTablePanel extends JPanel {
 	    btnSortByCourse.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    		TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+	    		TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
 	    		table.setRowSorter(sorter);
 	    		List<RowSorter.SortKey> list = new ArrayList<>(25);
 	    		list.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
@@ -208,7 +170,7 @@ public class FeesTablePanel extends JPanel {
 	    btnSortByAmount.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    		TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+	    		TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
 	    		table.setRowSorter(sorter);
 	    		List<RowSorter.SortKey> list = new ArrayList<>(25);
 	    		list.add(new RowSorter.SortKey(4, SortOrder.ASCENDING));

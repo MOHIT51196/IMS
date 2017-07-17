@@ -15,14 +15,12 @@ import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -50,14 +48,7 @@ public class EventTablePanel extends JPanel {
 		tablePanel.setLayout(new BorderLayout());
 		add(tablePanel);
 		
-		final Toggle editable = new Toggle(false);
 
-		
-/*		String[] header = {"sId","Name",
-                "Course",
-                "School / College",
-                "Contact",
-                "status"};*/
 		
 		String[] header = {"S. No.", "Name", "Date", "Venue", "Time", "Description"};
 		
@@ -111,7 +102,10 @@ public class EventTablePanel extends JPanel {
 		{"1.", "Demo For Java", new Date(10/8/2017), "Audi", "12:00", "Demostration for what is java and why it is so popular"},
 		{"1.", "Demo For Java", new Date(10/8/2017), "Audi", "12:00", "Demostration for what is java and why it is so popular"},
 		};
-	
+		
+		final Toggle editable = new Toggle(false);
+		
+		
 		/*Object[][] data = {
 		    {"01", "Smith",
 		     "Java", "IIT", "1234567890", "Admitted"},
@@ -185,44 +179,9 @@ public class EventTablePanel extends JPanel {
 																		     "Java", "IIT", "1234567890", "Admitted"}
 		};*/
 		
-		/*JTable table = new JTable(data, header);
-		panel.add(table);
-//		panel.add(table.getTableHeader());
-		panel.add(table.getTableHeader(), BorderLayout.CENTER);
-		panel.add(table, BorderLayout.CENTER);*/
-		
-		
-	    /*JTable jtable = new JTable(data, header);*/
-		/*final DefaultTableModel model = new DefaultTableModel(data, header);
-
-		final JTable jtable = new JTable(model);*/
-		TableModel model = new DefaultTableModel(data, header){
-		    public boolean isCellEditable(int row, int column)
-		    {
-		      return false;//This causes all cells to be not editable
-		    }
-		};
-		JTable jtable = new JTable(model){                           
-            public boolean isCellEditable(int row, int column)
-            {
-                return editable.getVal(); //request current value
-            }
-	    };
-	    jtable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-		tableView(jtable);
-
-	   /* RowSorter <TableModel> rsorter = new TableRowSorter<>(tmodel);
-	    jtable.setRowSorter(rsorter);*/
-	    JScrollPane jspane = new JScrollPane();
-	    jspane.setViewportView(jtable);
-	    tablePanel.add(jspane,BorderLayout.CENTER);  
-	    
-
-	    
-	    JTableHeader heading = jtable.getTableHeader();
-	      heading.setBackground(new Color(102, 255, 153));
-	      heading.setForeground(Color.WHITE);
-	      heading.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Table table = new Table(header, data, editable);
+		tableView(table);
+	    tablePanel.add(table.getScrollPane(),BorderLayout.CENTER);  
 	      
 	        
 	    
@@ -232,8 +191,8 @@ public class EventTablePanel extends JPanel {
 	    btnSortByName.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jtable.getModel());
-	    		jtable.setRowSorter(sorter);
+	    		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+	    		table.setRowSorter(sorter);
 	    		List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
 	    		sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
 	    		sorter.setSortKeys(sortKeys);
@@ -244,12 +203,15 @@ public class EventTablePanel extends JPanel {
 	    
 	    Action enableAction = new AbstractAction("Edit")
         {
-            @Override
+            
+			private static final long serialVersionUID = 1L;
+
+			@Override
             public void actionPerformed(ActionEvent e)
             {
-                editable.toggle(); //toggle current value
-                ((AbstractTableModel) jtable.getModel()).fireTableStructureChanged();
-                tableView(jtable);
+                table.getEditable().toggle(); //toggle current value
+                ((AbstractTableModel) table.getModel()).fireTableStructureChanged();
+                tableView(table);
             }
         };
         
@@ -269,9 +231,9 @@ public class EventTablePanel extends JPanel {
 	        @Override
 	        public void actionPerformed(ActionEvent arg0) {
 	            // check for selected row first
-	            if (jtable.getSelectedRow() != -1) {
+	            if (table.getSelectedRow() != -1) {
 	                // remove selected row from the model
-	                ((DefaultTableModel) model).removeRow(jtable.getSelectedRow());
+	                ((DefaultTableModel) table.getModel()).removeRow(table.getSelectedRow());
 	            }
 	        }
 	    });
@@ -283,8 +245,8 @@ public class EventTablePanel extends JPanel {
 	    btnSortByDate.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jtable.getModel());
-	    		jtable.setRowSorter(sorter);
+	    		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+	    		table.setRowSorter(sorter);
 	    		List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
 	    		sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
 	    		sorter.setSortKeys(sortKeys);
@@ -299,8 +261,8 @@ public class EventTablePanel extends JPanel {
 	    btnSortByVenue.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jtable.getModel());
-	    		jtable.setRowSorter(sorter);
+	    		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+	    		table.setRowSorter(sorter);
 	    		List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
 	    		sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
 	    		sorter.setSortKeys(sortKeys);
@@ -312,9 +274,7 @@ public class EventTablePanel extends JPanel {
 	    btnSendReminders.setBounds(1185, 519, 150, 35);
 	    modifyButton(btnSendReminders);
 	    add(btnSendReminders);
-	    /*jp.setLocation(700,150);
-	    jp.setSize(600,350);
-	    jf.getContentPane().add(jp);*/
+	    
 	}
 	
 	void modifyButton(JButton button){

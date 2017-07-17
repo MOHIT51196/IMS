@@ -9,10 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 import com.instisoft.form.views.AdmissionFormPanel;
+import com.instisoft.form.views.CourseFormPanel;
 import com.instisoft.form.views.EventFormPanel;
+import com.instisoft.table.views.CourseTablePanel;
 import com.instisoft.table.views.EventTablePanel;
 import com.instisoft.table.views.FeesTablePanel;
 
@@ -20,13 +23,14 @@ import com.instisoft.table.views.FeesTablePanel;
 public class MenuBar extends JMenuBar {
 
 	private static final long serialVersionUID = 1L;
-	
+	private JFrame masterFrame;
 	private Color bgColor;
 	
 	public MenuBar(JFrame masterFrame) {
 		
+		this.masterFrame = masterFrame;
+		
 		bgColor = new Color(169,169,169);
-//		setBorder(new EmptyBorder(4, 0, 4, 0));
 		setBorderPainted(false);
 		setFocusable(false);
 		
@@ -41,6 +45,8 @@ public class MenuBar extends JMenuBar {
 		EventFormPanel eventFormPanel = new EventFormPanel();
 		FeesTablePanel feesTablePanel = new FeesTablePanel();
 		EventTablePanel eventTablePanel = new EventTablePanel();
+		CourseTablePanel courseTablePanel = new CourseTablePanel();
+		CourseFormPanel courseFormPanel = new CourseFormPanel();
 		
 		
 		JMenu mnEvents = new JMenu("Events");
@@ -50,9 +56,9 @@ public class MenuBar extends JMenuBar {
 		JMenuItem UpcomingEvents = new JMenuItem("Upcoming Events");
 		setItemColor(UpcomingEvents);
 		UpcomingEvents.addActionListener((event)->{
-			((DashBoard)masterFrame).setHeader("Upcoming Events");
-			((DashBoard)masterFrame).showPanel(eventTablePanel);;
 			
+			renderPanel("Upcoming Events", eventTablePanel);
+		
 		});
 		mnEvents.add(UpcomingEvents);
 		JMenuItem RecentEvents = new JMenuItem("Recent Events");
@@ -61,8 +67,8 @@ public class MenuBar extends JMenuBar {
 		JMenuItem AddEvents = new JMenuItem("Create New Event");
 		setItemColor(AddEvents);
 		AddEvents.addActionListener((event)->{
-			((DashBoard)masterFrame).setHeader("Create Event");
-			((DashBoard)masterFrame).showPanel(eventFormPanel);;
+			
+			renderPanel("Create Event", eventFormPanel);
 			
 		});
 		mnEvents.add(AddEvents);
@@ -77,8 +83,8 @@ public class MenuBar extends JMenuBar {
 		JMenuItem FeesCollected = new JMenuItem("Fees Collected");
 		setItemColor(FeesCollected);
 		FeesCollected.addActionListener((event)->{
-			((DashBoard)masterFrame).setHeader("Fee Collection");
-			((DashBoard)masterFrame).showPanel(feesTablePanel);
+			
+			renderPanel("Fee Collection", feesTablePanel);
 			
 		});
 		mnFees.add(FeesCollected);
@@ -89,10 +95,20 @@ public class MenuBar extends JMenuBar {
 		
 		JMenuItem currentCources = new JMenuItem("Current Cources");
 		setItemColor(currentCources);
+		currentCources.addActionListener((event)->{
+			
+			renderPanel("Current Cources", courseTablePanel);
+		
+		});
 		mnCourses.add(currentCources);
 		
 		JMenuItem addCource = new JMenuItem("Create new Cource");
 		setItemColor(addCource);
+		addCource.addActionListener((event)->{
+			
+			renderPanel("Create Cource", courseFormPanel);
+		
+		});
 		mnCourses.add(addCource);
 		
 		JMenuItem counselBook = new JMenuItem("Counseller's Book");
@@ -111,7 +127,7 @@ public class MenuBar extends JMenuBar {
 		setStyle(mnBatches);
 		add(mnBatches);
 		
-		JMenuItem currentBatches = new JMenuItem("Batch Batches");
+		JMenuItem currentBatches = new JMenuItem("Current Batches");
 		setItemColor(currentBatches);
 		mnBatches.add(currentBatches);
 		
@@ -119,6 +135,17 @@ public class MenuBar extends JMenuBar {
 		setItemColor(addBatch);
 		mnBatches.add(addBatch);
 		
+		JMenu faculty = new JMenu("Faculty");
+		setStyle(faculty);
+		add(faculty);
+		
+		JMenuItem facultyList = new JMenuItem("Faculty List");
+		setItemColor(facultyList);
+		faculty.add(facultyList);
+		
+		JMenuItem addFaculty = new JMenuItem("Add new Faculty");
+		setItemColor(addFaculty);
+		faculty.add(addFaculty);
 		
 		
 		JMenu mnAdmission = new JMenu("Admission");
@@ -128,8 +155,8 @@ public class MenuBar extends JMenuBar {
 		JMenuItem newAdmission = new JMenuItem("New Admission");
 		setItemColor(newAdmission);
 		newAdmission.addActionListener((event)->{
-			((DashBoard)masterFrame).setHeader("Admission Form");
-			((DashBoard)masterFrame).showPanel(admissionFormPanel);
+			
+			renderPanel("Admission Form", admissionFormPanel);
 			
 		});
 		mnAdmission.add(newAdmission);
@@ -207,6 +234,11 @@ public class MenuBar extends JMenuBar {
         g2d.setColor(bgColor);
         g2d.fillRect(0, 0, getWidth() - 1, getHeight() - 1);
 
+    }
+    
+    private void renderPanel(String header, JPanel renderingPanel){
+    	((DashBoard)masterFrame).setHeader(header);
+		((DashBoard)masterFrame).showPanel(renderingPanel);
     }
 
 }

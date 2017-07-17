@@ -10,6 +10,7 @@ public class Cource implements Comparable<Cource>{
 	private String totalClasses;
 	private Date startDate;
 	private Date endDate;	//estimation of end Date
+	private String batchSchedule;
 	
 	public String getId() {
 		return id;
@@ -75,7 +76,15 @@ public class Cource implements Comparable<Cource>{
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	
+	
+	public String getBatchSchedule() {
+		return batchSchedule;
+	}
 
+	public void setBatchSchedule(String batchSchedule) {
+		this.batchSchedule = batchSchedule;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
