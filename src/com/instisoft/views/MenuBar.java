@@ -13,8 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 import com.instisoft.form.views.AdmissionFormPanel;
+import com.instisoft.form.views.BatchFormPanel;
 import com.instisoft.form.views.CourseFormPanel;
 import com.instisoft.form.views.EventFormPanel;
+import com.instisoft.table.views.BatchTablePanel;
 import com.instisoft.table.views.CourseTablePanel;
 import com.instisoft.table.views.EventTablePanel;
 import com.instisoft.table.views.FeesTablePanel;
@@ -47,6 +49,8 @@ public class MenuBar extends JMenuBar {
 		EventTablePanel eventTablePanel = new EventTablePanel();
 		CourseTablePanel courseTablePanel = new CourseTablePanel();
 		CourseFormPanel courseFormPanel = new CourseFormPanel();
+		BatchFormPanel batchFormPanel = new BatchFormPanel();
+		BatchTablePanel batchTablePanel = new BatchTablePanel();
 		
 		
 		JMenu mnEvents = new JMenu("Events");
@@ -129,10 +133,18 @@ public class MenuBar extends JMenuBar {
 		
 		JMenuItem currentBatches = new JMenuItem("Current Batches");
 		setItemColor(currentBatches);
+		currentBatches.addActionListener((event)->{
+			renderPanel("Current Batches", batchTablePanel);
+		});
 		mnBatches.add(currentBatches);
 		
 		JMenuItem addBatch = new JMenuItem("Create new Batch");
 		setItemColor(addBatch);
+		addBatch.addActionListener((event)->{
+			
+			renderPanel("Create Batch", batchFormPanel);
+			
+		});
 		mnBatches.add(addBatch);
 		
 		JMenu faculty = new JMenu("Faculty");

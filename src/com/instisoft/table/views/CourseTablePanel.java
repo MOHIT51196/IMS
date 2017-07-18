@@ -38,47 +38,47 @@ public class CourseTablePanel extends JPanel {
 		tablePanel.setLayout(new BorderLayout());
 		add(tablePanel);
 		
-		String columnNames[] = {"Course Id", "Course Name", "Category", "Fee", "Faculty", "Classes", "Start Date", "End Date", "Btach Schedule"};
+		String columnNames[] = {"Course Id", "Course Name", "Category", "Fee", "Faculty", "Classes", "Btach Schedule"};
 		
 		Object[][] data = {
-				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "17-07-2017", "28-09-2017", "WeekDays | Mon-Fri"},
-				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "07-05-2017", "18-06-2017", "WeekDays | Mon-Fri"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},
-				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "17-07-2017", "28-09-2017", "WeekDays | Mon-Fri"},
-				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "07-05-2017", "18-06-2017", "WeekDays | Mon-Fri"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},
-				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "17-07-2017", "28-09-2017", "WeekDays | Mon-Fri"},
-				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "07-05-2017", "18-06-2017", "WeekDays | Mon-Fri"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},
-				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "17-07-2017", "28-09-2017", "WeekDays | Mon-Fri"},
-				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "07-05-2017", "18-06-2017", "WeekDays | Mon-Fri"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},
-				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "17-07-2017", "28-09-2017", "WeekDays | Mon-Fri"},
-				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "07-05-2017", "18-06-2017", "WeekDays | Mon-Fri"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},
-				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "17-07-2017", "28-09-2017", "WeekDays | Mon-Fri"},
-				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "07-05-2017", "18-06-2017", "WeekDays | Mon-Fri"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "17-07-2017", "28-09-2017", "WeekDays | Mon-Fri"},
-				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "07-05-2017", "18-06-2017", "WeekDays | Mon-Fri"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "17-07-2017", "28-09-2017", "WeekDays | Mon-Fri"},
-				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "07-05-2017", "18-06-2017", "WeekDays | Mon-Fri"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "17-07-2017", "28-09-2017", "WeekDays | Mon-Fri"},
-				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "07-05-2017", "18-06-2017", "WeekDays | Mon-Fri"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"},
-				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "05-07-2017", "06-12-2017", "WeekEnds | Sat-Sun"},
-				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "07-08-2017", "08-09-2017", "WeekDays | Mon-Wed-Fri"}
+				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
+				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "WeekDays | Mon-Fri"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},
+				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
+				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "WeekDays | Mon-Fri"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},
+				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
+				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "WeekDays | Mon-Fri"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},
+				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
+				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "WeekDays | Mon-Fri"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},
+				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
+				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "WeekDays | Mon-Fri"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},
+				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
+				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "WeekDays | Mon-Fri"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
+				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "WeekDays | Mon-Fri"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
+				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "WeekDays | Mon-Fri"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
+				{"NT11131", "Advanced Java", "Software Development/Programming", "12000", "Amit Srivastava", "40", "WeekDays | Mon-Fri"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"},
+				{"BF7880", "Advanced Physics", "Science", "6000", "Amit Srivastava", "30", "WeekEnds | Sat-Sun"},
+				{"BF10554", "English Speaking", "Personality Development", "5000", "Amit Srivastava", "18", "WeekDays | Mon-Wed-Fri"}
 				};
 		
 		final Toggle isEditable = new Toggle(false);
@@ -88,7 +88,7 @@ public class CourseTablePanel extends JPanel {
 	    tablePanel.add(table.getScrollPane(),BorderLayout.CENTER); 
 	    
 	    JButton edit = new JButton("Edit");
-		edit.setBounds(10, 519, 134, 35);
+		edit.setBounds(115, 519, 134, 35);
 		modifyButton(edit);
 		edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -101,7 +101,7 @@ public class CourseTablePanel extends JPanel {
 		add(edit);
 		
 		JButton btnDelete = new JButton("Delete");
-		btnDelete.setBounds(165, 519, 134, 35);
+		btnDelete.setBounds(284, 519, 134, 35);
 	    modifyButton(btnDelete);
 	    btnDelete.addActionListener(new ActionListener() {
 
@@ -115,7 +115,7 @@ public class CourseTablePanel extends JPanel {
 	    add(btnDelete);
 	    
 	    JButton btnSortByName = new JButton("Sort by Name");
-	    btnSortByName.setBounds(321, 519, 134, 35);
+	    btnSortByName.setBounds(452, 519, 134, 35);
 	    modifyButton(btnSortByName);
 	    btnSortByName.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
@@ -130,7 +130,7 @@ public class CourseTablePanel extends JPanel {
 	    add(btnSortByName);
 	    
 	    JButton btnSortByClass = new JButton("Sort By Classes");
-	    btnSortByClass.setBounds(481, 519, 139, 35);
+	    btnSortByClass.setBounds(620, 519, 139, 35);
 	    modifyButton(btnSortByClass);
 	    btnSortByClass.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
@@ -147,7 +147,7 @@ public class CourseTablePanel extends JPanel {
 	    
 	    JButton btnSortByCategory = new JButton("Sort By Category");
 	    btnSortByCategory.setFont(new Font("Tahoma", Font.PLAIN, 11));
-	    btnSortByCategory.setBounds(645, 519, 145, 35);
+	    btnSortByCategory.setBounds(796, 519, 145, 35);
 	    modifyButton(btnSortByCategory);
 	    btnSortByCategory.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
@@ -163,7 +163,7 @@ public class CourseTablePanel extends JPanel {
 	    add(btnSortByCategory);
 	    
 	    JButton btnSortByFee = new JButton("Sort By Fee");
-	    btnSortByFee.setBounds(815, 519, 134, 35);
+	    btnSortByFee.setBounds(974, 519, 134, 35);
 	    btnSortByFee.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
@@ -176,21 +176,6 @@ public class CourseTablePanel extends JPanel {
 	    });
 	    modifyButton(btnSortByFee);
 	    add(btnSortByFee);
-	    
-	    JButton btnSortByDate = new JButton("Sort By Date");
-	    btnSortByDate.setBounds(974, 519, 134, 35);
-	    btnSortByDate.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    		
-	    		TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
-	    		table.setRowSorter(sorter);
-	    		List<RowSorter.SortKey> list = new ArrayList<>(25);
-	    		list.add(new RowSorter.SortKey(6, SortOrder.ASCENDING));
-	    		sorter.setSortKeys(list);
-	    	}
-	    });
-	    modifyButton(btnSortByDate);
-	    add(btnSortByDate);
 	
 	}
 	
@@ -213,9 +198,7 @@ public class CourseTablePanel extends JPanel {
 	      tcm.getColumn(3).setPreferredWidth(40);
 	      tcm.getColumn(4).setPreferredWidth(60);
 	      tcm.getColumn(5).setPreferredWidth(40);
-	      tcm.getColumn(6).setPreferredWidth(80);
-	      tcm.getColumn(7).setPreferredWidth(60);
-	      tcm.getColumn(8).setPreferredWidth(100);
+	      tcm.getColumn(6).setPreferredWidth(100);
 	      
 	}
 	

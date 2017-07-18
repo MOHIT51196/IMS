@@ -1,4 +1,3 @@
-import java.sql.Date;
 import java.util.LinkedHashSet;
 
 public class Cource implements Comparable<Cource>{
@@ -8,8 +7,6 @@ public class Cource implements Comparable<Cource>{
 	private double courceFee;
 	private LinkedHashSet<Lecturer> facultySet = new LinkedHashSet<>();
 	private String totalClasses;
-	private Date startDate;
-	private Date endDate;	//estimation of end Date
 	private String batchSchedule;
 	
 	public String getId() {
@@ -59,22 +56,6 @@ public class Cource implements Comparable<Cource>{
 
 	public void setFacultySet(LinkedHashSet<Lecturer> facultySet) {
 		this.facultySet = facultySet;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
 	}
 	
 	
