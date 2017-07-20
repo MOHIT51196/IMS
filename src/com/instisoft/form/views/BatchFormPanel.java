@@ -18,6 +18,8 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.instisoft.utils.GUILookAndFeel;
+
 public class BatchFormPanel extends JPanel {
 
 
@@ -33,7 +35,7 @@ public class BatchFormPanel extends JPanel {
 		setLayout(null);
 		setBackground(null);
 		setOpaque(false);
-		
+		GUILookAndFeel.setGUILookAndFeel();
 		
 		JLabel lblName = new JLabel("Name of Batch  (optional)");
 		lblName.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -170,9 +172,6 @@ public class BatchFormPanel extends JPanel {
 		btnReset.setForeground(Color.WHITE);
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnReset.setFocusPainted(false);
-		btnReset.setContentAreaFilled(false);
-		btnReset.setOpaque(true);
-		btnReset.setBorderPainted(false);
 		btnReset.setBounds(668, 472, 185, 40);
 		add(btnReset);
 		
@@ -181,9 +180,6 @@ public class BatchFormPanel extends JPanel {
 		btnSubmit.setForeground(Color.WHITE);
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSubmit.setFocusPainted(false);
-		btnSubmit.setContentAreaFilled(false);
-		btnSubmit.setOpaque(true);
-		btnSubmit.setBorderPainted(false);
 		btnSubmit.setBounds(453, 472, 185, 40);
 		add(btnSubmit);
 		

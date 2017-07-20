@@ -142,9 +142,6 @@ public class CourseFormPanel extends JPanel {
 		btnReset.setForeground(Color.WHITE);
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnReset.setFocusPainted(false);
-		btnReset.setContentAreaFilled(false);
-		btnReset.setOpaque(true);
-		btnReset.setBorderPainted(false);
 		btnReset.setBounds(668, 472, 185, 40);
 		add(btnReset);
 		
@@ -153,9 +150,6 @@ public class CourseFormPanel extends JPanel {
 		btnSubmit.setForeground(Color.WHITE);
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSubmit.setFocusPainted(false);
-		btnSubmit.setContentAreaFilled(false);
-		btnSubmit.setOpaque(true);
-		btnSubmit.setBorderPainted(false);
 		btnSubmit.setBounds(453, 472, 185, 40);
 		add(btnSubmit);
 		

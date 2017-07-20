@@ -203,9 +203,7 @@ public class BatchTablePanel extends JPanel {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		button.setFocusPainted(false);
-		button.setContentAreaFilled(false);
-		button.setOpaque(true);
-		button.setBorderPainted(false);
+
 	}
 	
 	void tableView(JTable jtable){

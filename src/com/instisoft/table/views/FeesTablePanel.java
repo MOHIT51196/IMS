@@ -224,9 +224,6 @@ public class FeesTablePanel extends JPanel {
 		btn.setBackground(new Color(102, 255, 153));
 		btn.setForeground(Color.WHITE);
 		btn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btn.setContentAreaFilled(false);
-		btn.setOpaque(true);
-		btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
 
 	}

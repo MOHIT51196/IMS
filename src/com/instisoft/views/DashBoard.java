@@ -18,8 +18,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
+
+import com.instisoft.utils.GUILookAndFeel;
 
 public class DashBoard extends JFrame {
 
@@ -43,6 +46,10 @@ public class DashBoard extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Color.GRAY);
+				
+		GUILookAndFeel.setGUILookAndFeel();
+//		WebLookAndFeel.install();
+		SwingUtilities.updateComponentTreeUI(this);
 		
 //		for all the panels in the Dashboard
 		panelList = new ArrayList<>();
@@ -81,11 +88,15 @@ public class DashBoard extends JFrame {
 		
 		sidePanel = new JPanel();
 		sidePanel.setBounds(0, 0, 224, 684);
-		sidePanel.setBackground(new Color(102, 255, 153));
+//		sidePanel.setBackground(new Color(102, 255, 153));
+		sidePanel.setBackground( new Color( 18, 30, 49)  );
 		contentPane.add(sidePanel);
 		sidePanel.setLayout(null);
 		
 		btnShowNav = new JToggleButton("Show Nav");
+		btnShowNav.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		btnShowNav.setBounds(0, 0, 73, 26);
+		btnShowNav.setFocusable(false);
 		btnShowNav.addItemListener((event)->{
 			if(btnShowNav.isSelected()){
 				((JToggleButton)event.getSource()).setText("Hide Nav");
@@ -96,8 +107,7 @@ public class DashBoard extends JFrame {
 				menuNavPanel.setVisible(false);
 			}
 		});
-		btnShowNav.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnShowNav.setBounds(0, 0, 73, 26);
+		
 		sidePanel.add(btnShowNav);
 		
 
@@ -118,6 +128,20 @@ public class DashBoard extends JFrame {
 		lblHeader.setBorder(new EmptyBorder(0, 6, 0, 6));
 		lblHeader.setBounds(234, 25, 935, 66);
 		contentPane.add(lblHeader);
+		
+		
+//		to be in the end @OverlappingCompenent
+//		BufferedImage logoImage;
+//		try {
+//			logoImage = ImageIO.read(this.getClass().getResource("logo.png")).getSubimage(0, 0, 426, 530);
+//			JLabel lblLogo = new JLabel(new ImageIcon(logoImage));
+//			lblLogo.setBounds(358, 0, 860, 684);
+//			contentPane.add(lblLogo);
+//			
+//		} catch (IOException e) {
+//
+//			e.printStackTrace();
+//		}
 		
 		
 		this.setVisible(true);

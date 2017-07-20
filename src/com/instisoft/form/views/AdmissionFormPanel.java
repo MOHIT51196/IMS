@@ -40,12 +40,6 @@ public class AdmissionFormPanel extends JPanel {
 		btnNext.setForeground(Color.WHITE);
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNext.setFocusPainted(false);
-		
-//		APPLYING C.O.B
-		btnNext.setContentAreaFilled(false);
-		btnNext.setOpaque(true);
-		btnNext.setBorderPainted(false);
-//		btnNext.setBorder(new RoundedBorder(50));
 		btnNext.addActionListener((event)->{
 			((JButton)event.getSource()).setVisible(false);
 			btnBack.setVisible(true);
@@ -59,12 +53,6 @@ public class AdmissionFormPanel extends JPanel {
 		btnReset.setForeground(Color.WHITE);
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnReset.setFocusPainted(false);
-		
-//		APPLYING C.O.B
-		btnReset.setContentAreaFilled(false);
-		btnReset.setOpaque(true);
-		btnReset.setBorderPainted(false);
-//		btnReset.setBorder(new RoundedBorder(50));
 		btnReset.setBounds(40, 430, 185, 40);
 		studentForm2.add(btnReset);
 		
@@ -73,12 +61,6 @@ public class AdmissionFormPanel extends JPanel {
 		btnSubmit.setForeground(Color.WHITE);
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSubmit.setFocusPainted(false);
-		
-//		APPLYING C.O.B
-		btnSubmit.setContentAreaFilled(false);
-		btnSubmit.setOpaque(true);
-		btnSubmit.setBorderPainted(false);
-//		btnSubmit.setBorder(new RoundedBorder(50));
 		btnSubmit.setBounds(277, 430, 185, 40);
 		studentForm2.add(btnSubmit);
 		
@@ -88,12 +70,7 @@ public class AdmissionFormPanel extends JPanel {
 		btnBack.setForeground(Color.WHITE);
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnBack.setFocusPainted(false);
-		
-//		APPLYING C.O.B
-		btnBack.setContentAreaFilled(false);
-		btnBack.setOpaque(true);
-		btnBack.setBorderPainted(false);
-//		btnBack.setBorder(new RoundedBorder(50));
+
 		btnBack.setBounds(764, 511, 185, 40);
 		btnBack.addActionListener((event)->{
 			((JButton)event.getSource()).setVisible(false);

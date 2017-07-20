@@ -106,79 +106,6 @@ public class EventTablePanel extends JPanel {
 		final Toggle editable = new Toggle(false);
 		
 		
-		/*Object[][] data = {
-		    {"01", "Smith",
-		     "Java", "IIT", "1234567890", "Admitted"},
-		    {"01", "Smith",
-			"Java", "IIT", "1234567890", "Admitted"},
-		    {"01", "Smith",
-			"Java", "IIT", "1234567890", "Admitted"},
-			{"01", "Smith",
-			"Java", "IIT", "1234567890", "Admitted"},
-			{"01", "Smith",
-				     "Java", "IIT", "1234567890", "Admitted"},
-			{"01", "Smith",
-			     "Java", "IIT", "1234567890", "Admitted"},
-			    {"01", "Smith",
-				"Java", "IIT", "1234567890", "Admitted"},
-			    {"01", "Smith",
-				"Java", "IIT", "1234567890", "Admitted"},
-				{"01", "Smith",
-				"Java", "IIT", "1234567890", "Admitted"},
-				{"01", "Smith",
-					     "Java", "IIT", "1234567890", "Admitted"},
-				{"01", "Smith",
-				     "Java", "IIT", "1234567890", "Admitted"},
-				    {"01", "Smith",
-					"Java", "IIT", "1234567890", "Admitted"},
-				    {"01", "Smith",
-					"Java", "IIT", "1234567890", "Admitted"},
-					{"01", "Smith",
-					"Java", "IIT", "1234567890", "Admitted"},
-					{"01", "Smith",
-						     "Java", "IIT", "1234567890", "Admitted"},
-					{"01", "Smith",
-							     "Java", "IIT", "1234567890", "Admitted"},
-							    {"01", "Smith",
-								"Java", "IIT", "1234567890", "Admitted"},
-							    {"01", "Smith",
-								"Java", "IIT", "1234567890", "Admitted"},
-								{"01", "Smith",
-								"Java", "IIT", "1234567890", "Admitted"},
-								{"01", "Smith",
-									     "Java", "IIT", "1234567890", "Admitted"},
-								{"01", "Smith",
-										     "Java", "IIT", "1234567890", "Admitted"},
-										    {"01", "Smith",
-											"Java", "IIT", "1234567890", "Admitted"},
-										    {"01", "Smith",
-											"Java", "IIT", "1234567890", "Admitted"},
-											{"01", "Smith",
-											"Java", "IIT", "1234567890", "Admitted"},
-											{"01", "Smith",
-												     "Java", "IIT", "1234567890", "Admitted"},
-											{"01", "Smith",
-													     "Java", "IIT", "1234567890", "Admitted"},
-													    {"01", "Smith",
-														"Java", "IIT", "1234567890", "Admitted"},
-													    {"01", "Smith",
-														"Java", "IIT", "1234567890", "Admitted"},
-														{"01", "Smith",
-														"Java", "IIT", "1234567890", "Admitted"},
-														{"01", "Smith",
-															     "Java", "IIT", "1234567890", "Admitted"},
-														{"01", "Smith",
-																     "Java", "IIT", "1234567890", "Admitted"},
-																    {"01", "Smith",
-																	"Java", "IIT", "1234567890", "Admitted"},
-																    {"01", "Smith",
-																	"Java", "IIT", "1234567890", "Admitted"},
-																	{"01", "Smith",
-																	"Java", "IIT", "1234567890", "Admitted"},
-																	{"01", "Smith",
-																		     "Java", "IIT", "1234567890", "Admitted"}
-		};*/
-		
 		Table table = new Table(header, data, editable);
 		tableView(table);
 	    tablePanel.add(table.getScrollPane(),BorderLayout.CENTER);  
@@ -278,13 +205,11 @@ public class EventTablePanel extends JPanel {
 	}
 	
 	void modifyButton(JButton button){
-		button.setBackground(new Color(102, 255, 153));
+//		button.setBackground(new Color(102, 255, 153));
+		button.setBackground(new Color( 18, 30, 49) );
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		button.setFocusPainted(false);
-		button.setContentAreaFilled(false);
-		button.setOpaque(true);
-		button.setBorderPainted(false);
 	}
 	
 	void tableView(JTable jtable){

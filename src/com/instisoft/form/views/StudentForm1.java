@@ -162,12 +162,13 @@ public class StudentForm1 extends JPanel {
 		this.add(textField_4);
 		
 		JToggleButton toggleButton = new JToggleButton("OFF");
-		toggleButton.setOpaque(false);
+		
 		toggleButton.setHorizontalAlignment(SwingConstants.LEADING);
 		toggleButton.setForeground(new Color(102, 255, 153));
 		toggleButton.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		toggleButton.setFocusable(false);
 		toggleButton.setContentAreaFilled(false);
+		toggleButton.setOpaque(false);
 		toggleButton.setBorderPainted(false);
 		toggleButton.setBounds(719, 32, 126, 35);
 		toggleButton.setIcon(toggleOffIcon);

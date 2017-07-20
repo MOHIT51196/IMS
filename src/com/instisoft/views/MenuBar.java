@@ -1,6 +1,7 @@
 package com.instisoft.views;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,10 +17,16 @@ import com.instisoft.form.views.AdmissionFormPanel;
 import com.instisoft.form.views.BatchFormPanel;
 import com.instisoft.form.views.CourseFormPanel;
 import com.instisoft.form.views.EventFormPanel;
+import com.instisoft.graph.views.GraphPanel;
 import com.instisoft.table.views.BatchTablePanel;
 import com.instisoft.table.views.CourseTablePanel;
+import com.instisoft.table.views.DueFeesPanel;
 import com.instisoft.table.views.EventTablePanel;
 import com.instisoft.table.views.FeesTablePanel;
+import com.instisoft.table.views.HolidaySchedulePanel;
+import com.instisoft.table.views.ProjectSchedulePanel;
+import com.instisoft.table.views.RecentEventPanel;
+import com.instisoft.table.views.TestSchedulePanel;
 
 
 public class MenuBar extends JMenuBar {
@@ -28,6 +35,7 @@ public class MenuBar extends JMenuBar {
 	private JFrame masterFrame;
 	private Color bgColor;
 	
+	
 	public MenuBar(JFrame masterFrame) {
 		
 		this.masterFrame = masterFrame;
@@ -35,6 +43,7 @@ public class MenuBar extends JMenuBar {
 		bgColor = new Color(169,169,169);
 		setBorderPainted(false);
 		setFocusable(false);
+		
 		
 		UIManager.put("Menu.selectionBackground", Color.WHITE);
 		UIManager.put("Menu.selectionForeground", Color.GRAY);
@@ -45,12 +54,20 @@ public class MenuBar extends JMenuBar {
 //		Panel to add onto masterFrame
 		AdmissionFormPanel admissionFormPanel = new AdmissionFormPanel();
 		EventFormPanel eventFormPanel = new EventFormPanel();
+		RecentEventPanel recentEventPanel = new RecentEventPanel();
 		FeesTablePanel feesTablePanel = new FeesTablePanel();
 		EventTablePanel eventTablePanel = new EventTablePanel();
 		CourseTablePanel courseTablePanel = new CourseTablePanel();
 		CourseFormPanel courseFormPanel = new CourseFormPanel();
 		BatchFormPanel batchFormPanel = new BatchFormPanel();
 		BatchTablePanel batchTablePanel = new BatchTablePanel();
+		GraphPanel graphPanel = new GraphPanel();
+		DueFeesPanel dueFeesPanel = new DueFeesPanel();
+		TestSchedulePanel testSchedulePanel = new TestSchedulePanel();
+		ProjectSchedulePanel projectSchedulePanel = new ProjectSchedulePanel();
+		HolidaySchedulePanel holidaySchedulePanel = new HolidaySchedulePanel();
+		
+		
 		
 		
 		JMenu mnEvents = new JMenu("Events");
@@ -67,6 +84,11 @@ public class MenuBar extends JMenuBar {
 		mnEvents.add(UpcomingEvents);
 		JMenuItem RecentEvents = new JMenuItem("Recent Events");
 		setItemColor(RecentEvents);
+		RecentEvents.addActionListener((event)->{
+			
+			renderPanel("Recent Events", recentEventPanel);
+		
+		});
 		mnEvents.add(RecentEvents);
 		JMenuItem AddEvents = new JMenuItem("Create New Event");
 		setItemColor(AddEvents);
@@ -83,6 +105,11 @@ public class MenuBar extends JMenuBar {
 		
 		JMenuItem DueFees = new JMenuItem("Due Fees");
 		setItemColor(DueFees);
+		DueFees.addActionListener((event)->{
+			
+			renderPanel("Due Fees", dueFeesPanel);
+			
+		});
 		mnFees.add(DueFees);
 		JMenuItem FeesCollected = new JMenuItem("Fees Collected");
 		setItemColor(FeesCollected);
@@ -191,12 +218,27 @@ public class MenuBar extends JMenuBar {
 		
 		JMenuItem Tests = new JMenuItem("Test Schedule");
 		setItemColor(Tests);
+		Tests.addActionListener((event)->{
+			
+			renderPanel("Test Schedule", testSchedulePanel);
+			
+		});
 		mnSchedule.add(Tests);
 		JMenuItem Projects = new JMenuItem("Project Schedule");
 		setItemColor(Projects);
+		Projects.addActionListener((event)->{
+			
+			renderPanel("Project Schedule", projectSchedulePanel);
+			
+		});
 		mnSchedule.add(Projects);
 		JMenuItem Holidays = new JMenuItem("Holiday Schedule");
 		setItemColor(Holidays);
+		Holidays.addActionListener((event)->{
+			
+			renderPanel("Holiday Schedule", holidaySchedulePanel);
+			
+		});
 		mnSchedule.add(Holidays);
 		JMenuItem TimeTable = new JMenuItem("Faculty Schedule");
 		setItemColor(TimeTable);
@@ -210,6 +252,11 @@ public class MenuBar extends JMenuBar {
 		
 		JMenuItem salesGraphs = new JMenuItem("Sales Graphs");
 		setItemColor(salesGraphs);
+		salesGraphs.addActionListener((event)->{
+			
+			renderPanel("Sales Graphical Analysis", graphPanel);
+			
+		});
 		mnGraphs.add(salesGraphs);
 		
 		JMenuItem attendanceGraphs = new JMenuItem("Attendance Graphs");
@@ -237,6 +284,7 @@ public class MenuBar extends JMenuBar {
 		menu.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
 		menu.setBorderPainted(false);
 		menu.setForeground(Color.WHITE);
+		
 	}
 
     @Override

@@ -184,9 +184,6 @@ public class CourseTablePanel extends JPanel {
 		button.setBackground(new Color(102, 255, 153));
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button.setFocusPainted(false);
-		button.setContentAreaFilled(false);
-		button.setOpaque(true);
 		button.setBorderPainted(false);
 	}
 	
