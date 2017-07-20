@@ -1,18 +1,25 @@
 package com.instisoft.views;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
 public class DashBoard extends JFrame {
 
@@ -24,8 +31,9 @@ public class DashBoard extends JFrame {
 
 	private final static String TITLE = ResourceBundle.getBundle("config").getString("project_title");
 	private MenuBar menuBar;
-	
+	private JToggleButton btnShowNav;
 	private ArrayList<JPanel> panelList;
+	private JPanel menuNavPanel;
 	
 	public DashBoard() {
 		super(TITLE + " Dashboard");
@@ -38,7 +46,6 @@ public class DashBoard extends JFrame {
 		
 //		for all the panels in the Dashboard
 		panelList = new ArrayList<>();
-		
 		
 		menuBar = new MenuBar(this);
 		setJMenuBar(menuBar);
@@ -60,10 +67,40 @@ public class DashBoard extends JFrame {
 		lblInstisoft.setBounds(1198, 11, 154, 34);
 		contentPane.add(lblInstisoft);
 		
+
+		menuNavPanel = new JPanel();
+		menuNavPanel.setBounds(0, 60, 39, 580);
+		menuNavPanel.setForeground(new Color(0, 0, 0));
+		menuNavPanel.setBackground(Color.BLACK);
+		menuNavPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		menuNavPanel.setLayout(new GridLayout(10, 1, 0, 0));
+		menuNavPanel.setVisible(false);
+		contentPane.add(menuNavPanel);
+		
+		generateNav();
+		
 		sidePanel = new JPanel();
-		sidePanel.setBounds(0, 0, 224, 678);
+		sidePanel.setBounds(0, 0, 224, 684);
 		sidePanel.setBackground(new Color(102, 255, 153));
 		contentPane.add(sidePanel);
+		sidePanel.setLayout(null);
+		
+		btnShowNav = new JToggleButton("Show Nav");
+		btnShowNav.addItemListener((event)->{
+			if(btnShowNav.isSelected()){
+				((JToggleButton)event.getSource()).setText("Hide Nav");
+				menuNavPanel.setVisible(true);
+			}
+			else{
+				((JToggleButton)event.getSource()).setText("Show Nav");
+				menuNavPanel.setVisible(false);
+			}
+		});
+		btnShowNav.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		btnShowNav.setBounds(0, 0, 73, 26);
+		sidePanel.add(btnShowNav);
+		
+
 		
 		containerPane = new JPanel();
 		containerPane.setBounds(234, 98, 1118, 569);
@@ -81,6 +118,7 @@ public class DashBoard extends JFrame {
 		lblHeader.setBorder(new EmptyBorder(0, 6, 0, 6));
 		lblHeader.setBounds(234, 25, 935, 66);
 		contentPane.add(lblHeader);
+		
 		
 		this.setVisible(true);
 	}
@@ -128,8 +166,30 @@ public class DashBoard extends JFrame {
 		
 	}
 	
+	private void setNavStyle(JButton button){
+		button.setContentAreaFilled(false);
+		button.setOpaque(false);
+		button.setBorder(new MatteBorder(0, 0, 1, 0, Color.WHITE));
+	}
+	
 	public void addToSidePanel(JComponent component){
 		sidePanel.add(component);
+	}
+	
+	JButton but1, but2, but3, but4, but5, but6, but7, but8, but9, but10;
+	
+	public void generateNav(){
+		
+		List<JButton> butList = Arrays.asList(but1, but2, but3, but4, but5, but6, but7, but8, but9, but10);
+		butList.forEach((button)->{
+			button = new JButton("");
+			setNavStyle(button);
+			
+			button.addActionListener((event)->{
+				
+			});
+			menuNavPanel.add(button);
+		});
 	}
 	
 	public static void main(String[] args) {
