@@ -1,6 +1,6 @@
 import java.util.LinkedHashMap;
 
-public class Lecturer implements Comparable<Lecturer>{
+public class Faculty implements Comparable<Faculty>{
 
 	private String id;
 	private String firstName;
@@ -120,9 +120,9 @@ public class Lecturer implements Comparable<Lecturer>{
 			return true;
 		}
 		
-		if(obj instanceof Lecturer){
+		if(obj instanceof Faculty){
 			
-			return this.id.equals(((Lecturer) obj).getId());
+			return this.id.equals(((Faculty) obj).getId());
 		}
 		
 		return false;
@@ -130,7 +130,7 @@ public class Lecturer implements Comparable<Lecturer>{
 	
 
 	@Override
-	public int compareTo(Lecturer lecturer) {
+	public int compareTo(Faculty lecturer) {
 		return this.id.compareTo(lecturer.getId());
 	}
 }

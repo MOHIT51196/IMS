@@ -133,11 +133,11 @@ public class MenuBar extends JMenuBar {
 		});
 		mnCourses.add(currentCources);
 		
-		JMenuItem addCource = new JMenuItem("Create new Cource");
+		JMenuItem addCource = new JMenuItem("Create new Course");
 		setItemColor(addCource);
 		addCource.addActionListener((event)->{
 			
-			renderPanel("Create Cource", courseFormPanel);
+			renderPanel("Create Course", courseFormPanel);
 		
 		});
 		mnCourses.add(addCource);

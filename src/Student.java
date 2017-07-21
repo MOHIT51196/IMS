@@ -15,7 +15,7 @@ public class Student implements Comparable<Student>{
 	private String enquiryId;
 	private String dob;
 	private String doj;
-	private HashMap<String , Cource> courceMap = new HashMap<>();
+	private HashMap<String , Course> courceMap = new HashMap<>();
 	
 	
 	public String getId() {
@@ -139,12 +139,12 @@ public class Student implements Comparable<Student>{
 	}
 
 
-	public HashMap<String, Cource> getCourceMap() {
+	public HashMap<String, Course> getCourceMap() {
 		return courceMap;
 	}
 
 
-	public void setCourceMap(HashMap<String, Cource> courceMap) {
+	public void setCourceMap(HashMap<String, Course> courceMap) {
 		this.courceMap = courceMap;
 	}
 	

@@ -64,7 +64,7 @@ public class StudentForm2 extends JPanel {
 		textField_1.setBounds(256, 36, 200, 30);
 		this.add(textField_1);
 		
-		JLabel lblLastName = new JLabel("Program / Cource");
+		JLabel lblLastName = new JLabel("Program / Course");
 		lblLastName.setForeground(Color.WHITE);
 		lblLastName.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblLastName.setBounds(256, 11, 119, 23);

@@ -3,13 +3,13 @@ import java.util.Date;
 public class Batch {
 
 	private String id;
-	private Cource cource;
+	private Course cource;
 	private String category;
 	private Date startDate;
 	private Date endDate;	//estimation of end Date
 	private String time;
 	private int hours;
-	private Lecturer faculty;
+	private Faculty faculty;
 	private int classCount;
 	
 	public String getId() {
@@ -18,10 +18,10 @@ public class Batch {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Cource getCource() {
+	public Course getCource() {
 		return cource;
 	}
-	public void setCource(Cource cource) {
+	public void setCource(Course cource) {
 		this.cource = cource;
 	}
 	public String getCategory() {
@@ -54,10 +54,10 @@ public class Batch {
 	public void setHours(int hours) {
 		this.hours = hours;
 	}
-	public Lecturer getFaculty() {
+	public Faculty getFaculty() {
 		return faculty;
 	}
-	public void setFaculty(Lecturer faculty) {
+	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
 	}
 	public int getClassCount() {

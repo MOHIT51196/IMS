@@ -1,11 +1,11 @@
 import java.util.LinkedHashSet;
 
-public class Cource implements Comparable<Cource>{
+public class Course implements Comparable<Course>{
 	private String id;
 	private String name;
 	private String category;
 	private double courceFee;
-	private LinkedHashSet<Lecturer> facultySet = new LinkedHashSet<>();
+	private LinkedHashSet<Faculty> facultySet = new LinkedHashSet<>();
 	private String totalClasses;
 	private String batchSchedule;
 	
@@ -50,11 +50,11 @@ public class Cource implements Comparable<Cource>{
 		this.totalClasses = totalClasses;
 	}
 
-	public LinkedHashSet<Lecturer> getFacultySet() {
+	public LinkedHashSet<Faculty> getFacultySet() {
 		return facultySet;
 	}
 
-	public void setFacultySet(LinkedHashSet<Lecturer> facultySet) {
+	public void setFacultySet(LinkedHashSet<Faculty> facultySet) {
 		this.facultySet = facultySet;
 	}
 	
@@ -74,15 +74,15 @@ public class Cource implements Comparable<Cource>{
 			return true;
 		}
 		
-		if(obj instanceof Cource){
-			return this.id.equals(((Cource) obj).getId());
+		if(obj instanceof Course){
+			return this.id.equals(((Course) obj).getId());
 		}
 		
 		return false;
 	}
 	
 	@Override
-	public int compareTo(Cource cource) {
+	public int compareTo(Course cource) {
 		return this.id.compareTo(cource.getId());
 	}
 
