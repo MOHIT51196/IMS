@@ -14,6 +14,8 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.instisoft.utils.GUILookAndFeel;
+
 public class StudentForm1 extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -119,7 +121,7 @@ public class StudentForm1 extends JPanel {
 		
 		JToggleButton tglbtnGender = new JToggleButton("MALE");
 		tglbtnGender.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
-		tglbtnGender.setForeground(new Color(102, 255, 153));
+		tglbtnGender.setForeground(GUILookAndFeel.getThemeColor());
 		tglbtnGender.setHorizontalAlignment(SwingConstants.LEADING);
 		tglbtnGender.setBounds(315, 93, 157, 40);
 		tglbtnGender.setFocusable(false);
@@ -164,7 +166,7 @@ public class StudentForm1 extends JPanel {
 		JToggleButton toggleButton = new JToggleButton("OFF");
 		
 		toggleButton.setHorizontalAlignment(SwingConstants.LEADING);
-		toggleButton.setForeground(new Color(102, 255, 153));
+		toggleButton.setForeground(GUILookAndFeel.getThemeColor());
 		toggleButton.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		toggleButton.setFocusable(false);
 		toggleButton.setContentAreaFilled(false);

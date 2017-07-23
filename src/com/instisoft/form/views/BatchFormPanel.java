@@ -77,7 +77,7 @@ public class BatchFormPanel extends JPanel {
 		
 		JToggleButton toggleButton = new JToggleButton("OFF");
 		toggleButton.setHorizontalAlignment(SwingConstants.LEADING);
-		toggleButton.setForeground(new Color(102, 255, 153));
+		toggleButton.setForeground(GUILookAndFeel.getThemeColor());
 		toggleButton.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		toggleButton.setFocusable(false);
 		toggleButton.setContentAreaFilled(false);
@@ -168,7 +168,7 @@ public class BatchFormPanel extends JPanel {
 		add(textField_status);
 		
 		JButton btnReset = new JButton("Reset");
-		btnReset.setBackground(new Color(102, 255, 153));
+		btnReset.setBackground(GUILookAndFeel.getThemeColor());
 		btnReset.setForeground(Color.WHITE);
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnReset.setFocusPainted(false);
@@ -176,7 +176,7 @@ public class BatchFormPanel extends JPanel {
 		add(btnReset);
 		
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBackground(new Color(102, 255, 153));
+		btnSubmit.setBackground(GUILookAndFeel.getThemeColor());
 		btnSubmit.setForeground(Color.WHITE);
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSubmit.setFocusPainted(false);

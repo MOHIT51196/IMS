@@ -1,9 +1,15 @@
 package com.instisoft.form.views;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import com.instisoft.utils.GUILookAndFeel;
 
 
 
@@ -36,7 +42,7 @@ public class AdmissionFormPanel extends JPanel {
 		
 		btnNext = new JButton("Next");
 		btnNext.setBounds(764, 511, 185, 40);
-		btnNext.setBackground(new Color(102, 255, 153));		
+		btnNext.setBackground(GUILookAndFeel.getThemeColor());		
 		btnNext.setForeground(Color.WHITE);
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNext.setFocusPainted(false);
@@ -49,7 +55,7 @@ public class AdmissionFormPanel extends JPanel {
 		studentForm1.add(btnNext);
 		
 		btnReset = new JButton("Reset");
-		btnReset.setBackground(new Color(102, 255, 153));
+		btnReset.setBackground(GUILookAndFeel.getThemeColor());
 		btnReset.setForeground(Color.WHITE);
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnReset.setFocusPainted(false);
@@ -57,7 +63,7 @@ public class AdmissionFormPanel extends JPanel {
 		studentForm2.add(btnReset);
 		
 		btnSubmit = new JButton("Submit");
-		btnSubmit.setBackground(new Color(102, 255, 153));
+		btnSubmit.setBackground(GUILookAndFeel.getThemeColor());
 		btnSubmit.setForeground(Color.WHITE);
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSubmit.setFocusPainted(false);
@@ -66,7 +72,7 @@ public class AdmissionFormPanel extends JPanel {
 		
 		btnBack = new JButton("Back");
 		
-		btnBack.setBackground(new Color(102, 255, 153));
+		btnBack.setBackground(GUILookAndFeel.getThemeColor());
 		btnBack.setForeground(Color.WHITE);
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnBack.setFocusPainted(false);
@@ -82,6 +88,37 @@ public class AdmissionFormPanel extends JPanel {
 		studentForm2.add(btnBack);
 		
 		
+	}
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JFrame frame = new JFrame();
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setBounds(100, 100, 1400, 1000);
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					frame.getContentPane().setLayout(null);
+					frame.setBackground(Color.GRAY);
+					
+					JPanel contentPane = new JPanel();
+					contentPane.setBackground(SystemColor.windowBorder);
+					contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+					contentPane.setLayout(null);
+					contentPane.add(new AdmissionFormPanel());
+					frame.setContentPane(contentPane);
+					
+					
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	
 }

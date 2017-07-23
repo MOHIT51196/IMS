@@ -22,6 +22,8 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.instisoft.utils.GUILookAndFeel;
+
 public class BatchTablePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -199,7 +201,7 @@ public class BatchTablePanel extends JPanel {
 	
 
 	void modifyButton(JButton button){
-		button.setBackground(new Color(102, 255, 153));
+		button.setBackground(GUILookAndFeel.getThemeColor());
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		button.setFocusPainted(false);

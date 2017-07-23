@@ -8,7 +8,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class GUILookAndFeel {
 
-
+	private static Color themeColor;
+	
+	static{
+		
+//		themeColor = new Color(102, 255, 153);	//Green Color
+		themeColor = new Color( 18, 30, 49);	//dark Theme Color
+		
+	}
+	
 	private GUILookAndFeel(){}
 	
 	public static void setGUILookAndFeel(){
@@ -70,5 +78,9 @@ public class GUILookAndFeel {
 			err.printStackTrace();
 		}
 		
+	}
+	
+	public static Color getThemeColor(){
+		return themeColor;
 	}
 }

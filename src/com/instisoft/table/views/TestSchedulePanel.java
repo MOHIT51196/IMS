@@ -23,6 +23,7 @@ import javax.swing.table.TableRowSorter;
 
 import com.instisoft.table.views.Table;
 import com.instisoft.table.views.Toggle;
+import com.instisoft.utils.GUILookAndFeel;
 
 public class TestSchedulePanel extends JPanel {
 
@@ -179,7 +180,7 @@ public class TestSchedulePanel extends JPanel {
 	}
 	
 	void modifyButton(JButton btn){
-		btn.setBackground(new Color(102, 255, 153));
+		btn.setBackground(GUILookAndFeel.getThemeColor());
 		btn.setForeground(Color.WHITE);
 		btn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btn.setFocusPainted(false);
