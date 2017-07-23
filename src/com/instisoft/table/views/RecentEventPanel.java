@@ -193,7 +193,7 @@ public class RecentEventPanel extends JPanel {
 	
 	void tableView(JTable table){
 		TableColumnModel tcm = table.getColumnModel();
-		tcm.getColumn(0).setPreferredWidth(60);     
+		tcm.getColumn(0).setPreferredWidth(100);     
 	      tcm.getColumn(1).setPreferredWidth(250);    
 	      tcm.getColumn(2).setPreferredWidth(100);    
 	      tcm.getColumn(3).setPreferredWidth(250);

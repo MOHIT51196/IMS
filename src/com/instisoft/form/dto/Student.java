@@ -1,3 +1,4 @@
+package com.instisoft.form.dto;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -15,7 +16,7 @@ public class Student implements Comparable<Student>{
 	private String enquiryId;
 	private String dob;
 	private String doj;
-	private HashMap<String , Course> courceMap = new HashMap<>();
+	private HashMap<String , CourseDTO> courceMap = new HashMap<>();
 	
 	
 	public String getId() {
@@ -139,12 +140,12 @@ public class Student implements Comparable<Student>{
 	}
 
 
-	public HashMap<String, Course> getCourceMap() {
+	public HashMap<String, CourseDTO> getCourceMap() {
 		return courceMap;
 	}
 
 
-	public void setCourceMap(HashMap<String, Course> courceMap) {
+	public void setCourceMap(HashMap<String, CourseDTO> courceMap) {
 		this.courceMap = courceMap;
 	}
 	

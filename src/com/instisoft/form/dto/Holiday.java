@@ -1,3 +1,4 @@
+package com.instisoft.form.dto;
 import java.sql.Date;
 
 public class Holiday implements Comparable<Holiday> {

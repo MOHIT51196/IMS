@@ -89,7 +89,7 @@ public class LoginFrame extends JFrame {
 		btnLogIn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setUserFields();
+				setFields();
 				userHelper = new UserHelper();
 				try {
 					if(userHelper.doLogin(userDTO)){
@@ -172,7 +172,7 @@ public class LoginFrame extends JFrame {
 		this.setVisible(true);
 	}
 	
-	private void setUserFields(){
+	private void setFields(){
 		if(textField_password.getPassword() != null && textField_username.getText() != null){
 			userDTO.setUsername(textField_username.getText());
 			userDTO.setPassword(String.valueOf(textField_password.getPassword()));

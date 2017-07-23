@@ -1,4 +1,4 @@
-package com.ims.views;
+package com.instisoft.table.views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,6 +20,8 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.instisoft.utils.GUILookAndFeel;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -28,6 +30,8 @@ import javax.swing.SortOrder;
 import javax.swing.SwingConstants;
 
 public class StudentRecord extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private static JPanel contentPane;
 	private JTextField textField_name;
@@ -82,6 +86,8 @@ public class StudentRecord extends JPanel {
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
+				{"44.", "Anmol Arora", "012", "Java"},
+				{"16.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
@@ -99,6 +105,8 @@ public class StudentRecord extends JPanel {
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
+				{"17.", "Anmol Arora", "012", "Java"},
+				{"51.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
@@ -110,11 +118,7 @@ public class StudentRecord extends JPanel {
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
-				{"1.", "Anmol Arora", "012", "Java"},
-				{"1.", "Anmol Arora", "012", "Java"},
-				{"1.", "Anmol Arora", "012", "Java"},
-				{"1.", "Anmol Arora", "012", "Java"},
-				{"1.", "Anmol Arora", "012", "Java"},
+				{"14.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
 				{"1.", "Anmol Arora", "012", "Java"},
@@ -367,14 +371,14 @@ public class StudentRecord extends JPanel {
 	
 	void tableView(JTable table){
 		TableColumnModel tcm = table.getColumnModel();
-		tcm.getColumn(0).setPreferredWidth(50);     
+		tcm.getColumn(0).setPreferredWidth(80);     
 	      tcm.getColumn(1).setPreferredWidth(400);    
 	      tcm.getColumn(2).setPreferredWidth(250);    
 	      tcm.getColumn(3).setPreferredWidth(300);
 	}
 	
 	void modifyButton(JButton btn){
-		btn.setBackground(new Color(102, 255, 153));
+		btn.setBackground(GUILookAndFeel.getThemeColor());
 		btn.setForeground(Color.WHITE);
 		btn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		/*btn.setContentAreaFilled(false);

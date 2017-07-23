@@ -68,6 +68,16 @@ public class GUILookAndFeel {
 //			  UIManager.put( "nimbusSelectedText", new Color( 255, 255, 255) );
 			  UIManager.put( "nimbusSelectionBackground", new Color( 104, 93, 156) );
 			  UIManager.put( "text", new Color( 230, 230, 230) );
+			  
+			  // TextField & TextArea theme Inversion
+			  UIManager.put("TextField.background", Color.WHITE);
+			  UIManager.put("TextField.foreground", Color.BLACK);
+			  UIManager.put("TextArea.background", Color.WHITE);
+			  UIManager.put("TextArea.foreground", Color.BLACK);
+			  
+			  // JMenuItem theme Inversion
+//			  UIManager.put("MenuItem.selectionBackground", new Color(169,169,169));
+//			  UIManager.put("MenuItem.selectionForeground", Color.WHITE);
 			
 //			====================================================
 			

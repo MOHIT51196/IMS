@@ -55,7 +55,14 @@ public class SignupFrame extends JFrame {
 	
 	private UserDTO userDTO;
 	private UserHelper userHelper;
+	private JCheckBox chckbxUseAsUsername;
+	private JCheckBox chckbxUseAsUsername1;
 
+	{
+		userDTO = new UserDTO();
+		userHelper =new UserHelper();
+	}
+	
 	public SignupFrame(JFrame callingFrame) throws IOException {
 		
 		super(TITLE + " Admin SignUp");
@@ -78,8 +85,7 @@ public class SignupFrame extends JFrame {
 			}
 		});
 		
-//		userDTO object formation
-		userDTO = new UserDTO();
+
 		
 		JLabel lblFirstName = new JLabel("First Name");
 		lblFirstName.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -99,8 +105,8 @@ public class SignupFrame extends JFrame {
 		btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setUserFields();
-				userHelper = new UserHelper();
+				setFields();
+				
 				try {
 					if(userHelper.doRegister(userDTO)){
 //						extra checking layer
@@ -197,7 +203,7 @@ public class SignupFrame extends JFrame {
 		lblLastName.setBounds(586, 117, 67, 23);
 		contentPane.add(lblLastName);
 		
-		JCheckBox chckbxUseAsUsername = new JCheckBox("Use as username");
+		chckbxUseAsUsername = new JCheckBox("Use as username");
 		chckbxUseAsUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxUseAsUsername.setForeground(Color.WHITE);
 		chckbxUseAsUsername.setContentAreaFilled(false);
@@ -236,7 +242,7 @@ public class SignupFrame extends JFrame {
 		txtField_contact.setBounds(314, 265, 320, 30);
 		contentPane.add(txtField_contact);
 		
-		JCheckBox chckbxUseAsUsername1 = new JCheckBox("Use as username");
+		chckbxUseAsUsername1 = new JCheckBox("Use as username");
 		chckbxUseAsUsername1.setOpaque(false);
 		chckbxUseAsUsername1.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxUseAsUsername1.setForeground(Color.WHITE);
@@ -347,19 +353,7 @@ public class SignupFrame extends JFrame {
 		btnReset.setBackground(new Color(102, 255, 153));
 		btnReset.setBounds(575, 530, 224, 40);
 		btnReset.addActionListener((event)->{
-			txtField_firstName.setText("");
-			txtField_lastName.setText("");
-			txtField_email.setText("");
-			txtField_contact.setText("");
-			txtField_username.setText("");
-			txtField_password.setText("");
-			txtField_repassword.setText("");
-			txtField_dob.setText("");
-			
-			chckbxUseAsUsername.setSelected(false);
-			chckbxUseAsUsername1.setSelected(false);
-			
-			tglbtnGender.setText("MALE");
+			resetFields();
 		});
 		
 		contentPane.add(btnReset);
@@ -372,7 +366,24 @@ public class SignupFrame extends JFrame {
 		
 		this.setVisible(true);
 	}
-	private void setUserFields(){
+	
+	private void resetFields(){
+		txtField_firstName.setText("");
+		txtField_lastName.setText("");
+		txtField_email.setText("");
+		txtField_contact.setText("");
+		txtField_username.setText("");
+		txtField_password.setText("");
+		txtField_repassword.setText("");
+		txtField_dob.setText("");
+		
+		chckbxUseAsUsername.setSelected(false);
+		chckbxUseAsUsername1.setSelected(false);
+		
+		tglbtnGender.setText("MALE");
+	}
+	
+	private void setFields(){
 		userDTO.setUsername(txtField_username.getText().trim());
 		userDTO.setPassword(String.valueOf(txtField_password.getPassword()).trim());
 		userDTO.setFirstName(txtField_firstName.getText().trim());

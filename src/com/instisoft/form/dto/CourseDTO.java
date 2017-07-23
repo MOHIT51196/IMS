@@ -1,21 +1,22 @@
+package com.instisoft.form.dto;
 import java.util.LinkedHashSet;
 
-public class Course implements Comparable<Course>{
+public class CourseDTO implements Comparable<CourseDTO>{
 	private String id;
 	private String name;
 	private String category;
 	private double courceFee;
 	private LinkedHashSet<Faculty> facultySet = new LinkedHashSet<>();
-	private String totalClasses;
+	private int totalClasses;
 	private String batchSchedule;
 	
 	public String getId() {
 		return id;
 	}
 
-//	public void setId(String id) {
-//		this.id = id;
-//	}
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -42,11 +43,11 @@ public class Course implements Comparable<Course>{
 	}
 
 	
-	public String getTotalClasses() {
+	public int getTotalClasses() {
 		return totalClasses;
 	}
 
-	public void setTotalClasses(String totalClasses) {
+	public void setTotalClasses(int totalClasses) {
 		this.totalClasses = totalClasses;
 	}
 
@@ -74,15 +75,15 @@ public class Course implements Comparable<Course>{
 			return true;
 		}
 		
-		if(obj instanceof Course){
-			return this.id.equals(((Course) obj).getId());
+		if(obj instanceof CourseDTO){
+			return this.id.equals(((CourseDTO) obj).getId());
 		}
 		
 		return false;
 	}
 	
 	@Override
-	public int compareTo(Course cource) {
+	public int compareTo(CourseDTO cource) {
 		return this.id.compareTo(cource.getId());
 	}
 

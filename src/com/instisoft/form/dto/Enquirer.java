@@ -1,3 +1,4 @@
+package com.instisoft.form.dto;
 import java.sql.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;

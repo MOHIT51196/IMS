@@ -1,10 +1,11 @@
 package com.instisoft.views;
 
 import java.awt.Color;
-
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -26,6 +27,7 @@ import com.instisoft.table.views.FeesTablePanel;
 import com.instisoft.table.views.HolidaySchedulePanel;
 import com.instisoft.table.views.ProjectSchedulePanel;
 import com.instisoft.table.views.RecentEventPanel;
+import com.instisoft.table.views.StudentRecord;
 import com.instisoft.table.views.TestSchedulePanel;
 
 
@@ -57,7 +59,7 @@ public class MenuBar extends JMenuBar {
 		RecentEventPanel recentEventPanel = new RecentEventPanel();
 		FeesTablePanel feesTablePanel = new FeesTablePanel();
 		EventTablePanel eventTablePanel = new EventTablePanel();
-		CourseTablePanel courseTablePanel = new CourseTablePanel();
+		CourseTablePanel courseTablePanel = CourseTablePanel.newInstance();
 		CourseFormPanel courseFormPanel = new CourseFormPanel();
 		BatchFormPanel batchFormPanel = new BatchFormPanel();
 		BatchTablePanel batchTablePanel = new BatchTablePanel();
@@ -66,6 +68,7 @@ public class MenuBar extends JMenuBar {
 		TestSchedulePanel testSchedulePanel = new TestSchedulePanel();
 		ProjectSchedulePanel projectSchedulePanel = new ProjectSchedulePanel();
 		HolidaySchedulePanel holidaySchedulePanel = new HolidaySchedulePanel();
+		StudentRecord studentRecord = new StudentRecord();
 		
 		
 		
@@ -208,6 +211,14 @@ public class MenuBar extends JMenuBar {
 		
 		JMenu mnStudents = new JMenu("Students Record");
 		setStyle(mnStudents);
+		mnStudents.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent event) {
+				
+				renderPanel("Student Records", studentRecord);
+				
+			}
+		});
 		add(mnStudents);
 		
 		
@@ -274,8 +285,8 @@ public class MenuBar extends JMenuBar {
 	}
 	
 	void setItemColor(JMenuItem item){
-		item.setForeground(Color.GRAY);
-		item.setBackground(Color.WHITE);
+		item.setForeground(Color.WHITE);
+//		item.setBackground(Color.WHITE);
 	}
 	
 	void setStyle(JMenu menu){

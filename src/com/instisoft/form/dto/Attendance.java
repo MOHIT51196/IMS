@@ -1,3 +1,4 @@
+package com.instisoft.form.dto;
 import java.sql.Time;
 
 class Attendance {

@@ -1,3 +1,4 @@
+package com.instisoft.form.dto;
 
 public class FacultyAttendance extends Attendance {
 

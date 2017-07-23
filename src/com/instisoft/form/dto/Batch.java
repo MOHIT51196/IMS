@@ -1,9 +1,10 @@
+package com.instisoft.form.dto;
 import java.util.Date;
 
 public class Batch {
 
 	private String id;
-	private Course cource;
+	private CourseDTO cource;
 	private String category;
 	private Date startDate;
 	private Date endDate;	//estimation of end Date
@@ -18,10 +19,10 @@ public class Batch {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Course getCource() {
+	public CourseDTO getCource() {
 		return cource;
 	}
-	public void setCource(Course cource) {
+	public void setCource(CourseDTO cource) {
 		this.cource = cource;
 	}
 	public String getCategory() {

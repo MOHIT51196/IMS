@@ -1,6 +1,6 @@
 package com.instisoft.common;
 
-public interface CommonSQL {
+public interface ICommonSQL {
 
 	final String CREATE_COURSE_SQL = "CREATE TABLE courses(cid VARCHAR(50) PRIMARY KEY, name VARCHAR(255) NOT NULL, category VARCHAR(255), fee INT(10) NOT NULL, noc INT(5), schedule VARCHAR(255))";
 	final String CREATE_FACULTYMASTER_SQL = "CREATE TABLE faculty_master(fid VARCHAR(50) PRIMARY KEY, name VARCHAR(255) NOT NULL, gender CHAR(1), dob VARCHAR(50), email VARCHAR(255) NOT NULL, phone VARCHAR(10), doj VARCHAR(50), salary INT(10), status VARCHAR(150))";
@@ -12,5 +12,6 @@ public interface CommonSQL {
 	
 	final String ADD_COURSE_SQL = "INSERT INTO courses(cid,name,category,fee,noc,schedule) VALUES(?,?,?,?,?,?)";
 	
+	final String READ_COURSE_SQL = "SELECT * FROM courses";
 	
 }

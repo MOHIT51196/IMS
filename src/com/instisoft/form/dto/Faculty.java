@@ -1,3 +1,4 @@
+package com.instisoft.form.dto;
 import java.util.LinkedHashMap;
 
 public class Faculty implements Comparable<Faculty>{
