@@ -16,7 +16,7 @@ public class CourseHelper {
 	
 	public boolean readCourses(ArrayList<CourseDTO> courseList) throws ClassNotFoundException, SQLException{
 		
-		if(courseList != null){
+		if( courseList != null ){
 			return courseDAO.read(courseList);
 		}
 		

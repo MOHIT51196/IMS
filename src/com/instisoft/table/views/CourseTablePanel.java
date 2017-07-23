@@ -37,8 +37,8 @@ public class CourseTablePanel extends JPanel {
 	private Table table;
 	
 	{
+		courseList = new ArrayList<>();
 		courseHelper = new CourseHelper();
-		
 	}
 	
 	public static CourseTablePanel newInstance(){
@@ -231,7 +231,7 @@ public class CourseTablePanel extends JPanel {
 		
 		DefaultTableModel model = ((DefaultTableModel)table.getModel());
 		
-		courseList = new ArrayList<>();
+		courseList.clear();
 		
 		try {
 			if(courseHelper.readCourses(courseList)){

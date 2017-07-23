@@ -41,6 +41,10 @@ public class MainFrame extends JFrame {
 		this.setSize(650, 500);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
+		
+		GUILookAndFeel.setGUILookAndFeel();
+//		WebLookAndFeel.install();
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.windowBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,12 +63,7 @@ public class MainFrame extends JFrame {
 				}
 			}
 			
-		});
-		
-//		APPLYING C.O.B
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setOpaque(true);
-		btnNewButton.setBorderPainted(false);
+		});		
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setBackground(GUILookAndFeel.getThemeColor());
 		btnNewButton.setForeground(Color.WHITE);
@@ -82,9 +81,6 @@ public class MainFrame extends JFrame {
 				}
 			}
 		});
-		button.setContentAreaFilled(false);
-		button.setOpaque(true);
-		button.setBorderPainted(false);
 		button.setFocusPainted(false);
 		button.setBackground(GUILookAndFeel.getThemeColor());
 		button.setForeground(Color.WHITE);
@@ -155,10 +151,7 @@ public class MainFrame extends JFrame {
 		});
 		
 		button_1.setForeground(Color.WHITE);
-		button_1.setContentAreaFilled(false);
-		button_1.setOpaque(true);
 		button_1.setFocusPainted(false);
-		button_1.setBorderPainted(false);
 		button_1.setBackground(GUILookAndFeel.getThemeColor());
 		button_1.setBounds(68, 382, 512, 45);
 		button_1.setCursor(new Cursor(Cursor.HAND_CURSOR));

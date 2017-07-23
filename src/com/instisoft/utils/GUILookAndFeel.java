@@ -74,6 +74,8 @@ public class GUILookAndFeel {
 			  UIManager.put("TextField.foreground", Color.BLACK);
 			  UIManager.put("TextArea.background", Color.WHITE);
 			  UIManager.put("TextArea.foreground", Color.BLACK);
+			  UIManager.put("PasswordField.background", Color.WHITE);
+			  UIManager.put("PasswordField.foreground", Color.BLACK);
 			  
 			  // JMenuItem theme Inversion
 //			  UIManager.put("MenuItem.selectionBackground", new Color(169,169,169));

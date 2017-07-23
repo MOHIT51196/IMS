@@ -46,6 +46,11 @@ public class LoginFrame extends JFrame {
 	
 	private UserDTO userDTO;
 	private UserHelper userHelper;
+	
+	{
+		userDTO = new UserDTO();
+		userHelper = new UserHelper();
+	}
 
 	public LoginFrame(JFrame callingFrame) throws IOException {
 		super(TITLE + " Login");
@@ -68,9 +73,11 @@ public class LoginFrame extends JFrame {
 			}
 		});
 		
+
+		GUILookAndFeel.setGUILookAndFeel();
+//		WebLookAndFeel.install();
 		
-//		userDTO object formation
-		userDTO = new UserDTO();
+		
 		
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -90,13 +97,17 @@ public class LoginFrame extends JFrame {
 		btnLogIn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				setFields();
-				userHelper = new UserHelper();
+				
 				try {
 					if(userHelper.doLogin(userDTO)){
 						System.out.println("LOGGED IN SUCCESSFULLY");
-						((JFrame)((JButton)e.getSource()).getTopLevelAncestor()).dispose();
+						
 						new DashBoard();
+						
+						((JFrame)((JButton)e.getSource()).getTopLevelAncestor()).dispose();
+						callingFrame.dispose();
 					}
 					else{
 						System.out.println("INCORRECT USERNAME or PASSWORD");
@@ -107,12 +118,6 @@ public class LoginFrame extends JFrame {
 				}
 			}
 		});
-		
-		
-//		APPLYING C.O.B
-		btnLogIn.setContentAreaFilled(false);
-		btnLogIn.setOpaque(true);
-		btnLogIn.setBorderPainted(false);
 		btnLogIn.setFocusPainted(false);
 		btnLogIn.setBackground(GUILookAndFeel.getThemeColor());
 		btnLogIn.setForeground(Color.WHITE);

@@ -72,6 +72,12 @@ public class SignupFrame extends JFrame {
 		this.setSize(880, 650);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
+		
+
+		GUILookAndFeel.setGUILookAndFeel();
+//		WebLookAndFeel.install();
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.windowBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -85,7 +91,6 @@ public class SignupFrame extends JFrame {
 				callingFrame.setVisible(true);
 			}
 		});
-		
 
 		
 		JLabel lblFirstName = new JLabel("First Name");
@@ -116,6 +121,9 @@ public class SignupFrame extends JFrame {
 							System.out.println("REGISTERED SUCCESSFULLY");
 							
 							new DashBoard();
+							
+							((JFrame)((JButton)e.getSource()).getTopLevelAncestor()).dispose();
+							callingFrame.dispose();
 						}
 					}
 					else{
@@ -127,11 +135,6 @@ public class SignupFrame extends JFrame {
 				}
 			}
 		});
-		
-//		APPLYING C.O.B
-		btnSignUp.setContentAreaFilled(false);
-		btnSignUp.setOpaque(true);
-		btnSignUp.setBorderPainted(false);
 		btnSignUp.setFocusPainted(false);
 		btnSignUp.setBackground(GUILookAndFeel.getThemeColor());
 		btnSignUp.setForeground(Color.WHITE);
@@ -347,10 +350,6 @@ public class SignupFrame extends JFrame {
 		btnReset.setForeground(Color.WHITE);
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnReset.setFocusPainted(false);
-		btnReset.setContentAreaFilled(false);
-		btnReset.setOpaque(true);
-		btnReset.setBorderPainted(false);
-//		btnReset.setBorder(new RoundedBorder(50));
 		btnReset.setBackground(GUILookAndFeel.getThemeColor());
 		btnReset.setBounds(575, 530, 224, 40);
 		btnReset.addActionListener((event)->{
