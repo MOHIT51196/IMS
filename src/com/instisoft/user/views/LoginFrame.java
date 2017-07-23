@@ -26,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.instisoft.user.dto.UserDTO;
 import com.instisoft.user.helper.UserHelper;
+import com.instisoft.utils.GUILookAndFeel;
 import com.instisoft.views.DashBoard;
 
 
@@ -113,7 +114,7 @@ public class LoginFrame extends JFrame {
 		btnLogIn.setOpaque(true);
 		btnLogIn.setBorderPainted(false);
 		btnLogIn.setFocusPainted(false);
-		btnLogIn.setBackground(new Color(102, 255, 153));
+		btnLogIn.setBackground(GUILookAndFeel.getThemeColor());
 		btnLogIn.setForeground(Color.WHITE);
 		btnLogIn.setBounds(359, 348, 400, 40);
 		
@@ -139,7 +140,7 @@ public class LoginFrame extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 324, 471);
-		panel.setBackground(new Color(102, 255, 153));
+		panel.setBackground(GUILookAndFeel.getThemeColor());
 		panel.add(new JLabel(new ImageIcon(loginImage)));
 		contentPane.add(panel);
 		

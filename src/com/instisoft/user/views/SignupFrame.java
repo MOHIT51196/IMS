@@ -28,6 +28,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.instisoft.user.dto.UserDTO;
 import com.instisoft.user.helper.UserHelper;
+import com.instisoft.utils.GUILookAndFeel;
 import com.instisoft.views.DashBoard;
 
 
@@ -132,7 +133,7 @@ public class SignupFrame extends JFrame {
 		btnSignUp.setOpaque(true);
 		btnSignUp.setBorderPainted(false);
 		btnSignUp.setFocusPainted(false);
-		btnSignUp.setBackground(new Color(102, 255, 153));
+		btnSignUp.setBackground(GUILookAndFeel.getThemeColor());
 		btnSignUp.setForeground(Color.WHITE);
 		btnSignUp.setBounds(314, 530, 224, 40);
 //		btnSignUp.setBorder(new RoundedBorder(50));
@@ -158,7 +159,7 @@ public class SignupFrame extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 280, 620);
-		panel.setBackground(new Color(102, 255, 153));
+		panel.setBackground(GUILookAndFeel.getThemeColor());
 		panel.add(new JLabel(new ImageIcon(loginImage)));
 		contentPane.add(panel);
 		
@@ -255,7 +256,7 @@ public class SignupFrame extends JFrame {
 		
 		tglbtnGender = new JToggleButton("MALE");
 		tglbtnGender.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
-		tglbtnGender.setForeground(new Color(102, 255, 153));
+		tglbtnGender.setForeground(GUILookAndFeel.getThemeColor());
 		tglbtnGender.setHorizontalAlignment(SwingConstants.LEADING);
 		tglbtnGender.setBounds(642, 332, 157, 40);
 		tglbtnGender.setFocusable(false);
@@ -314,7 +315,7 @@ public class SignupFrame extends JFrame {
 		tglbtnAuth = new JToggleButton("OFF");
 		tglbtnAuth.setOpaque(false);
 		tglbtnAuth.setHorizontalAlignment(SwingConstants.LEADING);
-		tglbtnAuth.setForeground(new Color(102, 255, 153));
+		tglbtnAuth.setForeground(GUILookAndFeel.getThemeColor());
 		tglbtnAuth.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		tglbtnAuth.setFocusable(false);
 		tglbtnAuth.setContentAreaFilled(false);
@@ -342,7 +343,7 @@ public class SignupFrame extends JFrame {
 		contentPane.add(lblTwoStepAuthentication);
 		
 		JButton btnReset = new JButton("Reset");
-		btnReset.setBackground(new Color(102, 255, 153));
+		btnReset.setBackground(GUILookAndFeel.getThemeColor());
 		btnReset.setForeground(Color.WHITE);
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnReset.setFocusPainted(false);
@@ -350,7 +351,7 @@ public class SignupFrame extends JFrame {
 		btnReset.setOpaque(true);
 		btnReset.setBorderPainted(false);
 //		btnReset.setBorder(new RoundedBorder(50));
-		btnReset.setBackground(new Color(102, 255, 153));
+		btnReset.setBackground(GUILookAndFeel.getThemeColor());
 		btnReset.setBounds(575, 530, 224, 40);
 		btnReset.addActionListener((event)->{
 			resetFields();
@@ -361,7 +362,7 @@ public class SignupFrame extends JFrame {
 //		to be in the end @OverlappingCompenent
 		BufferedImage logoImage = ImageIO.read(this.getClass().getResource("logo.png")).getSubimage(0, 0, 426, 530);
 		JLabel lblLogo = new JLabel(new ImageIcon(logoImage));
-		lblLogo.setBounds(339, 11, 447, 581);
+		lblLogo.setBounds(335, 11, 447, 581);
 		contentPane.add(lblLogo);
 		
 		this.setVisible(true);

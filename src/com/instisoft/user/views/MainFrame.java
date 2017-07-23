@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.instisoft.utils.GUILookAndFeel;
+
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -64,7 +66,7 @@ public class MainFrame extends JFrame {
 		btnNewButton.setOpaque(true);
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setFocusPainted(false);
-		btnNewButton.setBackground(new Color(102, 255, 153));
+		btnNewButton.setBackground(GUILookAndFeel.getThemeColor());
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBounds(95, 30, 185, 40);
 		contentPane.add(btnNewButton);
@@ -84,7 +86,7 @@ public class MainFrame extends JFrame {
 		button.setOpaque(true);
 		button.setBorderPainted(false);
 		button.setFocusPainted(false);
-		button.setBackground(new Color(102, 255, 153));
+		button.setBackground(GUILookAndFeel.getThemeColor());
 		button.setForeground(Color.WHITE);
 		button.setBounds(355, 30, 185, 40);
 		contentPane.add(button);
@@ -157,7 +159,7 @@ public class MainFrame extends JFrame {
 		button_1.setOpaque(true);
 		button_1.setFocusPainted(false);
 		button_1.setBorderPainted(false);
-		button_1.setBackground(new Color(102, 255, 153));
+		button_1.setBackground(GUILookAndFeel.getThemeColor());
 		button_1.setBounds(68, 382, 512, 45);
 		button_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		contentPane.add(button_1);
