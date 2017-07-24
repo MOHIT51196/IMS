@@ -371,7 +371,7 @@ public class StudentRecord extends JPanel {
 	
 	void tableView(JTable table){
 		TableColumnModel tcm = table.getColumnModel();
-		tcm.getColumn(0).setPreferredWidth(80);     
+		tcm.getColumn(0).setPreferredWidth(100);     
 	      tcm.getColumn(1).setPreferredWidth(400);    
 	      tcm.getColumn(2).setPreferredWidth(250);    
 	      tcm.getColumn(3).setPreferredWidth(300);
