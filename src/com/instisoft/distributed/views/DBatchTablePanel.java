@@ -1,4 +1,4 @@
-package com.ims.views;
+package com.instisoft.distributed.views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -26,7 +26,13 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.instisoft.table.views.Table;
+import com.instisoft.table.views.Toggle;
+
 public class DBatchTablePanel extends JPanel {
+	
+	
+	private static final long serialVersionUID = 1L;
 	
 	private static JPanel contentPane;
 	private JTextField textField_Id;
@@ -113,7 +119,7 @@ public class DBatchTablePanel extends JPanel {
 				{"1.", "May Evening 5-7", "Java Core"}
 		};
 		
-Toggle isEditable = new Toggle(false);
+		Toggle isEditable = new Toggle(false);
 		
 		Table table = new Table(columnNames, data, isEditable);
 		tableView(table);
