@@ -1,7 +1,6 @@
 package com.instisoft.form.dao;
 
-import static com.instisoft.common.ICommonSQL.ADD_COURSE_SQL;
-import static com.instisoft.common.ICommonSQL.READ_COURSE_SQL;
+import static com.instisoft.common.ICommonSQL.*;
 import static com.instisoft.user.common.ICommonDAO.getConnection;
 
 import java.sql.Connection;
@@ -121,5 +120,53 @@ public class CourseDAO implements ICourseDAO {
 	public boolean delete() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	
+	public static CourseDTO readById(String couseId) throws ClassNotFoundException, SQLException {
+		
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet =null;
+		
+		
+		try{
+			connection = getConnection();
+			
+			statement = connection.prepareStatement(FIND_COURSE_SQL);
+
+			resultSet = statement.executeQuery();
+				
+			if(resultSet.next()){
+				
+				CourseDTO courseDTO = new CourseDTO();
+				
+				courseDTO.setId(resultSet.getString("cid"));
+				courseDTO.setName(resultSet.getString("name"));
+				courseDTO.setCategory(resultSet.getString("category"));
+				courseDTO.setCourceFee(resultSet.getDouble("fee"));
+				courseDTO.setTotalClasses(resultSet.getInt("noc"));
+				courseDTO.setBatchSchedule(resultSet.getString("schedule"));
+				
+				return courseDTO;
+			}
+			
+			
+		}
+		finally{
+			if(resultSet != null){
+				resultSet.close();
+			}
+			
+			if(statement != null){
+				statement.close();
+			}
+			
+			if(connection != null){
+				connection.close();
+			}
+		}
+		
+		return null;
 	}
 }

@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +23,35 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.instisoft.form.dto.BatchDTO;
+import com.instisoft.form.helper.BatchHelper;
 import com.instisoft.utils.GUILookAndFeel;
 
 public class BatchTablePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static BatchTablePanel instance;
 
-	public BatchTablePanel() {
+	private Table table;
+	
+	private BatchHelper batchHelper;
+	private ArrayList<BatchDTO> batchList;
+	
+	{
+		batchHelper = new BatchHelper();
+		batchList = new ArrayList<>();
+	}
+	public static BatchTablePanel newInstance(){
+		
+		if(instance == null){
+			instance = new BatchTablePanel();
+		}
+		
+		return instance;
+	}
+	
+	private BatchTablePanel() {
 
 		setSize( 1118, 569);
 		setBackground(null);
@@ -42,55 +65,57 @@ public class BatchTablePanel extends JPanel {
 		
 		String columnNames[] = {"Batch Id", "Batch Name", "Course Name", "Category", "Faculty", "Start date", "End Date", "Hours/Class", "Btach Timings"};
 		
-		Object[][] data = {
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
-				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
-				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
-				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
-				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"}
-				
-				};
+//		Object[][] data = {
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"},
+//				{"b@W10234", "May Evening 5-7", "Java Core", "Advanced",  "Amit Srivastava",  "2017-05-07", "2017-06-18", "2 hr", "05:00 PM"},
+//				{"b@N11131", "August Morning 10-11", "Advanced Java", "Intermediates", "Amit Srivastava", "2017-08-07", "2017-09-08", "1 hr", "10:00 AM"},
+//				{"b@B10554", "July Noon 2-5", "English Speaking", "Beginners",  "Amit Srivastava",  "2017-07-05", "2017-12-06", "3 hr", "02:00 PM"},
+//				{"b@F7880", "July Morning 10-12", "Advanced Physics", "Intermediates", "Amit Srivastava", "2017-07-17", "2017-09-28", "2 hr", "10:00 AM"}
+//				
+//				};
 		
 		final Toggle isEditable = new Toggle(false);
 		
-		Table table = new Table(columnNames, data, isEditable);
+		table = new Table(columnNames, 0, isEditable);
 		tableView(table);
 	    tablePanel.add(table.getScrollPane(),BorderLayout.CENTER); 
+	    
+	    renderBatchList();
 	    
 	    JButton edit = new JButton("Edit");
 		edit.setBounds(10, 519, 134, 35);
@@ -220,6 +245,47 @@ public class BatchTablePanel extends JPanel {
 	      tcm.getColumn(7).setPreferredWidth(50);
 	      tcm.getColumn(8).setPreferredWidth(70);
 	}
+	
+	public void renderBatchList(){
+		
+		DefaultTableModel model = ((DefaultTableModel)table.getModel());
+		
+		batchList.clear();
+		
+		try {
+			if(batchHelper.readBatches(batchList)){
+				
+				model.setRowCount(0);
+				
+				batchList.forEach((batch)->{
+					Object[] arrBatch = {
+						batch.getId(),
+						batch.getName(),
+						batch.getCourse().getName(),
+						batch.getCategory(),
+						batch.getFaculty(),
+						batch.getStartDate(),
+						batch.getEndDate(),
+						batch.getHours(),
+						batch.getTime()
+					};
+					
+					
+					model.addRow(arrBatch);
+				});
+				
+				System.out.println("FETCHED BATCHES SUCCESSFULLY");
+			}
+			else{
+				System.out.println("NO BATCHES ARE ADDED");
+			}
+		} catch (ClassNotFoundException | SQLException err) {
+			
+			err.printStackTrace();
+		}
+	}
+	
+	
 	
 	/**
 	 * Launch the application.

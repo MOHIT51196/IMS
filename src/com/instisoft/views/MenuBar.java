@@ -59,10 +59,10 @@ public class MenuBar extends JMenuBar {
 		RecentEventPanel recentEventPanel = new RecentEventPanel();
 		FeesTablePanel feesTablePanel = new FeesTablePanel();
 		EventTablePanel eventTablePanel = new EventTablePanel();
-		CourseTablePanel courseTablePanel = CourseTablePanel.newInstance();
 		CourseFormPanel courseFormPanel = new CourseFormPanel();
+		CourseTablePanel courseTablePanel = CourseTablePanel.newInstance();
 		BatchFormPanel batchFormPanel = new BatchFormPanel();
-		BatchTablePanel batchTablePanel = new BatchTablePanel();
+		BatchTablePanel batchTablePanel = BatchTablePanel.newInstance();
 		GraphPanel graphPanel = new GraphPanel();
 		DueFeesPanel dueFeesPanel = new DueFeesPanel();
 		TestSchedulePanel testSchedulePanel = new TestSchedulePanel();
