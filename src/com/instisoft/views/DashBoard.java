@@ -2,8 +2,13 @@ package com.instisoft.views;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -32,6 +37,15 @@ public class DashBoard extends JFrame {
 	private ArrayList<JPanel> panelList;
 	private NavPanel menuNavPanel;
 	private JLabel lblInstisoft;
+	
+	static Desktop desktop = Desktop.getDesktop();
+	
+	final String FACEBOOK = "facebook";
+	final String TWITTER = "twitter";
+	final String GOOGLE_PLUS = "googleplus";
+	final String YOUTUBE = "youtube";
+	
+	private static final int MAX_PREFERRED_HEIGHT = 653;
 	
 	public DashBoard() {
 		super(TITLE + " Dashboard");
@@ -64,8 +78,8 @@ public class DashBoard extends JFrame {
 		lblInstisoft.setForeground(Color.WHITE);
 		lblInstisoft.setHorizontalAlignment(JLabel.CENTER);
 		lblInstisoft.setVerticalAlignment(JLabel.CENTER);
-		lblInstisoft.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 28));
-		lblInstisoft.setBounds(1198, 11, 154, 34);
+		lblInstisoft.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 24));
+		lblInstisoft.setBounds(1212, 6, 144, 34);
 		contentPane.add(lblInstisoft);
 		
 
@@ -82,16 +96,17 @@ public class DashBoard extends JFrame {
 			menuNavPanel.setVisible(true);
 		});
 		
-		contentPane.add(btnShowNav);
+//		contentPane.add(btnShowNav);		// Strict Navigation ON
 		
 		menuNavPanel = new NavPanel(this);
-		menuNavPanel.setLocation(0, 60);
+		menuNavPanel.setLocation(0, 0);
+		menuNavPanel.setVisible(true);		// Strict Navigation ON
 		contentPane.add(menuNavPanel);
 		
 		
 		
 		sidePanel = new JPanel();
-		sidePanel.setBounds(0, 0, 224, 684);
+		sidePanel.setBounds(0, 0, 224, 653);
 //		sidePanel.setBackground(new Color(102, 255, 153));
 		sidePanel.setBackground( new Color( 18, 30, 49)  );
 		contentPane.add(sidePanel);
@@ -100,7 +115,7 @@ public class DashBoard extends JFrame {
 		
 
 		containerPane = new JPanel();
-		containerPane.setBounds(234, 98, 1118, 569);
+		containerPane.setBounds(238, 84, 1118, 569);
 		containerPane.setBackground(null);
 		containerPane.setOpaque(false);
 		containerPane.setLayout(null);
@@ -113,8 +128,42 @@ public class DashBoard extends JFrame {
 		lblHeader.setFont(new Font("Times New Roman", Font.BOLD, 42));
 		lblHeader.setOpaque(false);
 		lblHeader.setBorder(new EmptyBorder(0, 6, 0, 6));
-		lblHeader.setBounds(234, 25, 935, 66);
+		lblHeader.setBounds(236, 20, 935, 59);
 		contentPane.add(lblHeader);
+		
+		JPanel bottomBar = new JPanel();
+		bottomBar.setBackground(Color.LIGHT_GRAY);
+		bottomBar.setBounds(0, 654, 1372, 28);
+		contentPane.add(bottomBar);
+		bottomBar.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Copyrights \u00A9 2017 | xyz Corporations");
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		lblNewLabel.setBounds(6, 0, 275, 23);
+		bottomBar.add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(1197, 0, 144, 28);
+		panel.setOpaque(false);
+		bottomBar.add(panel);
+		panel.setLayout(new GridLayout(0, 4, 5, 0));
+		
+		JButton btnFB = new JButton();
+		setSocialButtonStyle(btnFB, FACEBOOK);
+		panel.add(btnFB);
+		
+		JButton btnTwitter = new JButton();
+		setSocialButtonStyle(btnTwitter, TWITTER);
+		panel.add(btnTwitter);
+		
+		JButton btnGoogle = new JButton();
+		setSocialButtonStyle(btnGoogle, GOOGLE_PLUS);
+		panel.add(btnGoogle);
+		
+		JButton btnYoutube = new JButton();
+		setSocialButtonStyle(btnYoutube, YOUTUBE);
+		panel.add(btnYoutube);
 		
 		
 //		to be in the end @OverlappingCompenent
@@ -216,6 +265,11 @@ public class DashBoard extends JFrame {
 		lblHeader.setText(title);
 	}
 	
+	
+	public static int getMaxPreferredHeight() {
+		return MAX_PREFERRED_HEIGHT;
+	}
+
 	private void hideContainerComponents(){
 		panelList.forEach((panel)->{
 			panel.setVisible(false);
@@ -246,7 +300,23 @@ public class DashBoard extends JFrame {
 		sidePanel.add(component);
 	}
 	
-	
+	public void setSocialButtonStyle(JButton button, String socialMediaName){
+		button.setIcon(new ImageIcon("resources/icon_" + socialMediaName + ".png"));
+		button.setFocusable(false);
+		button.setContentAreaFilled(false);
+		button.setOpaque(false);
+		button.setBorderPainted(false);
+		button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		button.addActionListener((event)->{
+			try {
+				desktop.browse(new URI(ResourceBundle.getBundle("config").getString("link_" + socialMediaName)));
+			} 
+			catch (IOException | URISyntaxException e) {
+				
+				e.printStackTrace();
+			}
+		});
+	}
 	
 	public static void main(String[] args) {
 		new DashBoard();
