@@ -137,7 +137,7 @@ public class DBatchTablePanel extends JPanel {
 		textField_Id.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		textField_Id.setColumns(10);
 		textField_Id.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Id.setBounds(135, 48, 100, 30);
+		textField_Id.setBounds(135, 48, 150, 30);
 		textField_Id.setEditable(false);
 		detailsPanel.add(textField_Id);
 		
@@ -153,7 +153,7 @@ public class DBatchTablePanel extends JPanel {
 		textField_Bname.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		textField_Bname.setColumns(10);
 		textField_Bname.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Bname.setBounds(135, 89, 367, 30);
+		textField_Bname.setBounds(135, 89, 259, 30);
 		textField_Bname.setEditable(false);
 		detailsPanel.add(textField_Bname);
 		
@@ -174,7 +174,7 @@ public class DBatchTablePanel extends JPanel {
 		detailsPanel.add(textField_Cname);
 		
 		JLabel lblCategory = new JLabel("Category");
-		lblCategory.setBounds(295, 132, 90, 25);
+		lblCategory.setBounds(309, 132, 75, 25);
 		lblCategory.setForeground(Color.WHITE);
 		lblCategory.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		detailsPanel.add(lblCategory);
@@ -201,7 +201,7 @@ public class DBatchTablePanel extends JPanel {
 		textField_Faculty.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		textField_Faculty.setColumns(10);
 		textField_Faculty.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Faculty.setBounds(135, 171, 250, 30);
+		textField_Faculty.setBounds(135, 171, 259, 30);
 		textField_Faculty.setEditable(false);
 		detailsPanel.add(textField_Faculty);
 		
@@ -222,7 +222,7 @@ public class DBatchTablePanel extends JPanel {
 		detailsPanel.add(textField_StartDate);
 		
 		JLabel lblEndDate = new JLabel("End Date");
-		lblEndDate.setBounds(295, 214, 100, 25);
+		lblEndDate.setBounds(309, 214, 75, 25);
 		lblEndDate.setForeground(Color.WHITE);
 		lblEndDate.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		detailsPanel.add(lblEndDate);
@@ -253,8 +253,8 @@ public class DBatchTablePanel extends JPanel {
 		textField_Hours.setEditable(false);
 		detailsPanel.add(textField_Hours);
 		
-		JLabel lblTimings = new JLabel("Batch Timings");
-		lblTimings.setBounds(295, 255, 100, 25);
+		JLabel lblTimings = new JLabel("Timings");
+		lblTimings.setBounds(309, 250, 75, 25);
 		lblTimings.setForeground(Color.WHITE);
 		lblTimings.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		detailsPanel.add(lblTimings);

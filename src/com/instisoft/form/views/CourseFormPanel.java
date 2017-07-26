@@ -51,7 +51,7 @@ public class CourseFormPanel extends JPanel {
 
 	public CourseFormPanel() {
 	
-		this.setSize(1118, 550);
+		setSize(1118, 550);
 		setLayout(null);
 		setBackground(null);
 		setOpaque(false);

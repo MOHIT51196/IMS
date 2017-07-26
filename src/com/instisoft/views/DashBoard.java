@@ -2,13 +2,8 @@ package com.instisoft.views;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Desktop;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.SystemColor;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -29,6 +24,7 @@ public class DashBoard extends JFrame {
 	
 	private JPanel contentPane;
 	private JPanel sidePanel, containerPane;
+	private HomeScreenPanel homeScreenPanel;
 	private JLabel lblHeader;
 
 	private final static String TITLE = ResourceBundle.getBundle("config").getString("project_title");
@@ -38,17 +34,22 @@ public class DashBoard extends JFrame {
 	private NavPanel menuNavPanel;
 	private JLabel lblInstisoft;
 	
-	static Desktop desktop = Desktop.getDesktop();
-	
-	final String FACEBOOK = "facebook";
-	final String TWITTER = "twitter";
-	final String GOOGLE_PLUS = "googleplus";
-	final String YOUTUBE = "youtube";
 	
 	private static final int MAX_PREFERRED_HEIGHT = 653;
 	
+	
+	{
+		
+//		for all the panels in the Dashboard
+		panelList = new ArrayList<>();
+		
+		homeScreenPanel = new HomeScreenPanel();
+		
+	}
+	
 	public DashBoard() {
 		super(TITLE + " Dashboard");
+		
 		this.setIconImage(new ImageIcon(ResourceBundle.getBundle("config").getString("logo_icon")).getImage());
 		setSize(700, 450);
 		setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -59,9 +60,7 @@ public class DashBoard extends JFrame {
 		GUILookAndFeel.setGUILookAndFeel();
 //		WebLookAndFeel.install();
 		
-//		for all the panels in the Dashboard
-		panelList = new ArrayList<>();
-		
+
 		menuBar = new MenuBar(this);
 		setJMenuBar(menuBar);
 		
@@ -70,6 +69,7 @@ public class DashBoard extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
+
 		
 
 		lblInstisoft = new JLabel("instiSoft");
@@ -121,6 +121,8 @@ public class DashBoard extends JFrame {
 		containerPane.setLayout(null);
 		contentPane.add(containerPane);
 		
+		
+		
 		lblHeader = new JLabel("Welcome to Dashboard");
 		lblHeader.setVerticalAlignment(SwingConstants.CENTER);
 		lblHeader.setBackground(null);
@@ -128,8 +130,12 @@ public class DashBoard extends JFrame {
 		lblHeader.setFont(new Font("Times New Roman", Font.BOLD, 42));
 		lblHeader.setOpaque(false);
 		lblHeader.setBorder(new EmptyBorder(0, 6, 0, 6));
-		lblHeader.setBounds(236, 20, 935, 59);
+		lblHeader.setBounds(236, 13, 935, 59);
 		contentPane.add(lblHeader);
+		
+		
+		// rendering Home Screen View
+		showPanel(homeScreenPanel);
 		
 		JPanel bottomBar = new JPanel();
 		bottomBar.setBackground(Color.LIGHT_GRAY);
@@ -142,28 +148,6 @@ public class DashBoard extends JFrame {
 		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblNewLabel.setBounds(6, 0, 275, 23);
 		bottomBar.add(lblNewLabel);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(1197, 0, 144, 28);
-		panel.setOpaque(false);
-		bottomBar.add(panel);
-		panel.setLayout(new GridLayout(0, 4, 5, 0));
-		
-		JButton btnFB = new JButton();
-		setSocialButtonStyle(btnFB, FACEBOOK);
-		panel.add(btnFB);
-		
-		JButton btnTwitter = new JButton();
-		setSocialButtonStyle(btnTwitter, TWITTER);
-		panel.add(btnTwitter);
-		
-		JButton btnGoogle = new JButton();
-		setSocialButtonStyle(btnGoogle, GOOGLE_PLUS);
-		panel.add(btnGoogle);
-		
-		JButton btnYoutube = new JButton();
-		setSocialButtonStyle(btnYoutube, YOUTUBE);
-		panel.add(btnYoutube);
 		
 		
 //		to be in the end @OverlappingCompenent
@@ -266,11 +250,18 @@ public class DashBoard extends JFrame {
 	}
 	
 	
+	
+	public HomeScreenPanel getHomeScreenPanel() {
+		return homeScreenPanel;
+	}
+
+
 	public static int getMaxPreferredHeight() {
 		return MAX_PREFERRED_HEIGHT;
 	}
 
 	private void hideContainerComponents(){
+		
 		panelList.forEach((panel)->{
 			panel.setVisible(false);
 		});
@@ -300,23 +291,7 @@ public class DashBoard extends JFrame {
 		sidePanel.add(component);
 	}
 	
-	public void setSocialButtonStyle(JButton button, String socialMediaName){
-		button.setIcon(new ImageIcon("resources/icon_" + socialMediaName + ".png"));
-		button.setFocusable(false);
-		button.setContentAreaFilled(false);
-		button.setOpaque(false);
-		button.setBorderPainted(false);
-		button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		button.addActionListener((event)->{
-			try {
-				desktop.browse(new URI(ResourceBundle.getBundle("config").getString("link_" + socialMediaName)));
-			} 
-			catch (IOException | URISyntaxException e) {
-				
-				e.printStackTrace();
-			}
-		});
-	}
+	
 	
 	public static void main(String[] args) {
 		new DashBoard();

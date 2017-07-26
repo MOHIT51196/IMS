@@ -196,7 +196,7 @@ public class DCourseTablePanel extends JPanel {
 		textField_Category.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		textField_Category.setColumns(10);
 		textField_Category.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Category.setBounds(135, 130, 250, 30);
+		textField_Category.setBounds(135, 130, 212, 30);
 		textField_Category.setEditable(false);
 		detailsPanel.add(textField_Category);
 		
@@ -217,7 +217,7 @@ public class DCourseTablePanel extends JPanel {
 		detailsPanel.add(textField_Faculty);
 		
 		JLabel lblFee = new JLabel("Fee");
-		lblFee.setBounds(321, 91, 100, 25);
+		lblFee.setBounds(336, 50, 64, 25);
 		lblFee.setForeground(Color.WHITE);
 		lblFee.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		detailsPanel.add(lblFee);
@@ -228,12 +228,12 @@ public class DCourseTablePanel extends JPanel {
 		textField_Fee.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		textField_Fee.setColumns(10);
 		textField_Fee.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Fee.setBounds(394, 89, 150, 30);
+		textField_Fee.setBounds(404, 48, 150, 30);
 		textField_Fee.setEditable(false);
 		detailsPanel.add(textField_Fee);
 		
 		JLabel lblClasses = new JLabel("Classes");
-		lblClasses.setBounds(321, 173, 100, 25);
+		lblClasses.setBounds(336, 91, 64, 25);
 		lblClasses.setForeground(Color.WHITE);
 		lblClasses.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		detailsPanel.add(lblClasses);
@@ -244,7 +244,7 @@ public class DCourseTablePanel extends JPanel {
 		textField_Classes.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		textField_Classes.setColumns(10);
 		textField_Classes.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Classes.setBounds(394, 171, 100, 30);
+		textField_Classes.setBounds(404, 89, 150, 30);
 		textField_Classes.setEditable(false);
 		detailsPanel.add(textField_Classes);
 		
@@ -260,7 +260,7 @@ public class DCourseTablePanel extends JPanel {
 		textField_Schedule.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		textField_Schedule.setColumns(10);
 		textField_Schedule.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Schedule.setBounds(135, 212, 250, 30);
+		textField_Schedule.setBounds(135, 212, 206, 30);
 		textField_Schedule.setEditable(false);
 		detailsPanel.add(textField_Schedule);
 		
