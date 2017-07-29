@@ -59,7 +59,7 @@ public class AdmissionFormPanel extends JPanel {
 		btnReset.setForeground(Color.WHITE);
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnReset.setFocusPainted(false);
-		btnReset.setBounds(40, 430, 185, 40);
+		btnReset.setBounds(40, 510, 185, 40);
 		studentForm2.add(btnReset);
 		
 		btnSubmit = new JButton("Submit");
@@ -67,7 +67,7 @@ public class AdmissionFormPanel extends JPanel {
 		btnSubmit.setForeground(Color.WHITE);
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSubmit.setFocusPainted(false);
-		btnSubmit.setBounds(277, 430, 185, 40);
+		btnSubmit.setBounds(277, 510, 185, 40);
 		studentForm2.add(btnSubmit);
 		
 		btnBack = new JButton("Back");

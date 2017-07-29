@@ -13,6 +13,7 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
+import com.instisoft.settings.views.SettingsFrame;
 import com.instisoft.user.views.MainFrame;
 
 public class NavPanel extends JPanel {
@@ -22,11 +23,13 @@ public class NavPanel extends JPanel {
 	
 	private JPanel menuPanel;
 	private DashBoard dashBoard;
+	private SettingsFrame settingsFrame;
+	
 	private JButton btnHome;
 	private JButton but2;
 	private JButton but3;
-	private JButton but4;
 	private JToggleButton btnSwitchView;
+	private JButton btnSettings;
 	private JButton btnLogout;
 	
 	public NavPanel(JFrame masterFrame) {
@@ -41,17 +44,17 @@ public class NavPanel extends JPanel {
 			dashBoard = ((DashBoard)masterFrame);
 		}
 		
-		JButton btnCross = new JButton(new ImageIcon("resources/cross_button.png"));
-		btnCross.setBounds(51, 0, 25, 25);
-		btnCross.setFocusable(false);
-		btnCross.setContentAreaFilled(false);
-		btnCross.setOpaque(false);
-		btnCross.setBorderPainted(false);
-		btnCross.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnCross.addActionListener((event)->{
-			this.setVisible(false);
-			dashBoard.getBtnShowNav().setVisible(true);
-		});
+//		JButton btnCross = new JButton(new ImageIcon("resources/cross_button.png"));
+//		btnCross.setBounds(51, 0, 25, 25);
+//		btnCross.setFocusable(false);
+//		btnCross.setContentAreaFilled(false);
+//		btnCross.setOpaque(false);
+//		btnCross.setBorderPainted(false);
+//		btnCross.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//		btnCross.addActionListener((event)->{
+//			this.setVisible(false);
+//			dashBoard.getBtnShowNav().setVisible(true);
+//		});
 		
 //		add(btnCross);		// Strict Navigation ON
 		
@@ -63,13 +66,10 @@ public class NavPanel extends JPanel {
 		menuPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.setBorder(new EmptyBorder(10, 0, 10, 0));
 		add(menuPanel);
-		
-//		but1 = new JButton();
-//		but2 = new JButton();
-//		but4 = new JButton();
-//		but5 = new JButton();
-//		but6 = new JButton();
-//		but7 = new JButton();
+
+		settingsFrame = new SettingsFrame(dashBoard);
+		settingsFrame.setVisible(false);
+
 		
 		btnHome = new JButton(new ImageIcon("resources/icon_home.png"));
 		setNavStyle(btnHome);
@@ -79,8 +79,8 @@ public class NavPanel extends JPanel {
 		});
 		menuPanel.add(btnHome);
 		
-		Arrays.asList(but2, but3, but4).forEach((button)->{
-			button = new JButton(new ImageIcon("resources/icon_switch.png"));
+		Arrays.asList(but2, but3).forEach((button)->{
+			button = new JButton(new ImageIcon("resources/icon_settings.png"));
 			setNavStyle(button);
 			
 			button.addActionListener((event)->{
@@ -128,10 +128,15 @@ public class NavPanel extends JPanel {
 //		});
 		menuPanel.add(btnSwitchView);
 		
+		btnSettings = new JButton(new ImageIcon("resources/icon_settings.png"));
+		setNavStyle(btnSettings);
+		btnSettings.addActionListener((event)->{
+			settingsFrame.setVisible(true);
+		});
+		menuPanel.add(btnSettings);
 		
 		btnLogout = new JButton(new ImageIcon("resources/icon_logout.png"));
 		setNavStyle(btnLogout);
-		btnLogout.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
 		btnLogout.addActionListener((event)->{
 			masterFrame.dispose();
 			new MainFrame();
@@ -147,12 +152,14 @@ public class NavPanel extends JPanel {
 		button.setContentAreaFilled(false);
 		button.setOpaque(false);
 //		button.setBorder(new MatteBorder(0, 0, 1, 0, Color.WHITE));
+		button.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
 	}
 	
 	private void setNavStyle(JToggleButton button){
 		button.setContentAreaFilled(false);
 		button.setOpaque(false);
 //		button.setBorder(new MatteBorder(0, 0, 1, 0, Color.WHITE));
+		button.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
 	}
 
 }

@@ -27,11 +27,11 @@ public interface ICommonSQL {
 	final String ADD_STUDENT$ADDRESS_SQL="INSERT INTO student_address_mapping(sid,aid) VALUES(?,?)";
 	final String ADD_STUDENT$BATCH_SQL = "INSERT INTO student_batch_mapping(sid,bid) VALUES(?,?)";
 	
-	final String ADD_COURSE_SQL = "INSERT INTO courses(cid,cname,category,fee,noc,schedule) VALUES(?,?,?,?,?,?)";
-	final String ADD_COURSE$FACULTY = "INSERT INTO course_faculty_mapping(cid,fid) VALUES(?,?)";
-	final String ADD_COURSE$BATCH_SQL = "INSERT INTO course_batch_mapping(cid,bid) VALUES(?,?)";
+	final String ADD_COURSE_SQL = "INSERT INTO courses(cid,cname,category,fee,noc) VALUES(?,?,?,?,?)";
+	final String ADD_COURSE$FACULTY = "INSERT INTO course_faculty_mapping(cid,fid) VALUES(?,(SELECT fid FROM faculty_master WHERE fname=?))";
+//	final String ADD_COURSE$BATCH_SQL = "INSERT INTO course_batch_mapping(cid,bid) VALUES(?,?)";
 	final String READ_COURSE_NAMES_SQL = "SELECT cname FROM courses";
-	final String READ_COURSE_LIST_SQL = "SELECT * FROM courses c, course_batch_mapping cb, batches b, course_faculty_mapping cf, faculty_master f WHERE c.cid=cb.cid and cb.bid=b.bid and c.cid=cf.cid and cf.fid=f.fid";
+	final String READ_COURSE_LIST_SQL = "SELECT * FROM courses c, course_faculty_mapping cf, faculty_master f WHERE c.cid=cf.cid and cf.fid=f.fid";
 	final String FIND_COURSE_SQL = "SELECT * FROM courses WHERE cname=?";
 	final String FIND_COURSE$BATCH_SQL = "SELECT * FROM courses c, course_batch_mapping cb, batches b WHERE c.cname=? and c.cid = cb.cid and cb.bid = b.bid";
 	final String FIND_COURSE$FACULTY_SQL = "SELECT * FROM courses c, course_faculty_mapping cf, faculty_master b WHERE c.cname=? and c.cid = cf.cid and cf.fid = b.fid";

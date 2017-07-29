@@ -311,9 +311,9 @@ public class BatchFormPanel extends JPanel {
 	private void setFields(){
 		batchDTO.setId(textField_BatchId.getText());
 		batchDTO.setName(textField_Name.getText());
-		batchDTO.setCourseId((String)comboCourses.getSelectedItem());
+		batchDTO.setCourseId(String.valueOf(comboCourses.getSelectedItem()));
 		batchDTO.setCategory(textField_Category.getText());
-		batchDTO.setFaculty((FacultyDTO)comboFaculties.getSelectedItem());
+		batchDTO.setFacultyName(String.valueOf(comboFaculties.getSelectedItem()));
 		batchDTO.setStartDate(textField_StartDate.getText());
 		batchDTO.setEndDate(textField_EndDate.getText());
 		batchDTO.setTime(textField_Timing.getText());

@@ -7,9 +7,13 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.TextArea;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,6 +25,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.instisoft.form.dto.CourseDTO;
 import com.instisoft.form.helper.CourseHelper;
+import com.instisoft.form.helper.FacultyHelper;
 import com.instisoft.table.views.CourseTablePanel;
 import com.instisoft.utils.GUILookAndFeel;
 
@@ -35,8 +40,7 @@ public class CourseFormPanel extends JPanel {
 	
 	private JTextField textField_Fee;
 	private JTextField textField_Name;
-	private JTextField textField_Faculty;
-	private JTextField textField_Schedule;
+	private JComboBox<String> comboFaculties;
 	private JTextField textField_Classes;
 	private JTextField textField_Category;
 	private JTextField textField_CourseId;
@@ -214,27 +218,19 @@ public class CourseFormPanel extends JPanel {
 		lblFaculty.setBounds(27, 354, 140, 23);
 		add(lblFaculty);
 		
-		textField_Faculty = new JTextField();
-		textField_Faculty.setHorizontalAlignment(SwingConstants.LEFT);
-		textField_Faculty.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		textField_Faculty.setColumns(10);
-		textField_Faculty.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Faculty.setBounds(27, 378, 200, 30);
-		add(textField_Faculty);
+		comboFaculties = new JComboBox<>();
+		renderFacultiesOnCB();
+		comboFaculties.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		comboFaculties.setBorder(new EmptyBorder(0, 10, 0, 10));
+		comboFaculties.setBounds(27, 378, 200, 30);
+		add(comboFaculties);
 		
 		JLabel lblSchedule = new JLabel("Batch Schedule");
 		lblSchedule.setForeground(Color.WHITE);
 		lblSchedule.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		lblSchedule.setBounds(438, 151, 140, 23);
 		add(lblSchedule);
-		
-		textField_Schedule = new JTextField();
-		textField_Schedule.setHorizontalAlignment(SwingConstants.LEFT);
-		textField_Schedule.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		textField_Schedule.setColumns(10);
-		textField_Schedule.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Schedule.setBounds(438, 173, 200, 30);
-		add(textField_Schedule);
+	
 		
 		JLabel lbl_Classes = new JLabel("Number of Classes");
 		lbl_Classes.setForeground(Color.WHITE);
@@ -256,9 +252,8 @@ public class CourseFormPanel extends JPanel {
 		textField_Name.setText("");
 		textField_Category.setText("");
 		textField_Fee.setText("");
-		textField_Faculty.setText("");
+		comboFaculties.setSelectedIndex(0);
 		textField_Classes.setText("");
-		textField_Schedule.setText("");
 		textArea_Desc.setText("");
 	}
 	
@@ -267,9 +262,34 @@ public class CourseFormPanel extends JPanel {
 		courseDTO.setName(textField_Name.getText());
 		courseDTO.setCategory(textField_Category.getText());
 		courseDTO.setCourceFee(Double.parseDouble(textField_Fee.getText()));
-		courseDTO.setFacultySet(null); 			// null For the Faculty
+		courseDTO.setFacultyNameList(new ArrayList<>( Arrays.asList( String.valueOf(comboFaculties.getSelectedItem()) ) )); 			// null For the Faculty
 		courseDTO.setTotalClasses(Integer.parseInt(textField_Classes.getText()));
-		courseDTO.setBatchSchedule(textField_Schedule.getText());
+	}
+	
+	public void renderFacultiesOnCB(){
+		ArrayList<String> facultyComboList = null;
+		try {
+			facultyComboList = FacultyHelper.fetchFacultyList();
+			setComboBox(facultyComboList, comboFaculties);
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
+	
+
+	private void setComboBox(ArrayList<String> dataList, JComboBox<String> comboBox){
+		
+		
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel();
+		
+		if(dataList != null){
+			dataList.forEach((data)->{
+				model.addElement(data);
+			});
+		}
+		
+		comboBox.setModel(model);
 	}
 	
 	/**

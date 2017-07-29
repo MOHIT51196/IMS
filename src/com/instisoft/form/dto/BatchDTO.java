@@ -12,6 +12,7 @@ public class BatchDTO {
 	private String time;
 	private double hours;
 	private FacultyDTO faculty;
+	private String facultyName;
 	
 	
 	public String getId() {
@@ -73,6 +74,12 @@ public class BatchDTO {
 	}
 	public void setFaculty(FacultyDTO faculty) {
 		this.faculty = faculty;
+	}
+	public String getFacultyName() {
+		return facultyName;
+	}
+	public void setFacultyName(String facultyName) {
+		this.facultyName = facultyName;
 	}
 	
 	

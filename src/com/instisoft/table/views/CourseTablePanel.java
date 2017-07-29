@@ -63,7 +63,7 @@ public class CourseTablePanel extends JPanel {
 		tablePanel.setLayout(new BorderLayout());
 		add(tablePanel);
 		
-		String columnNames[] = {"Course Id", "Course Name", "Category", "Fee", "Faculty", "Classes", "Btach Schedule"};
+		String columnNames[] = {"Course Id", "Course Name", "Category", "Fee", "Faculty", "Classes"};
 		
 //		Object[][] data = {
 //				{"AF10234", "Java Core", "Software Development/Programming", "9000", "Amit Srivastava", "60", "WeekDays | Mon-Fri"},
@@ -224,7 +224,6 @@ public class CourseTablePanel extends JPanel {
 	      tcm.getColumn(3).setPreferredWidth(40);
 	      tcm.getColumn(4).setPreferredWidth(60);
 	      tcm.getColumn(5).setPreferredWidth(40);
-	      tcm.getColumn(6).setPreferredWidth(100);
 	      
 	}
 	
@@ -247,7 +246,6 @@ public class CourseTablePanel extends JPanel {
 						course.getCourceFee(),
 						course.getFacultySet().iterator().next().getName(),
 						course.getTotalClasses(),
-						course.getBatchSchedule()
 					};
 					
 					

@@ -1,18 +1,23 @@
 package com.instisoft.form.views;
 import java.awt.Color;
-
-import java.awt.Cursor;
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import com.instisoft.form.helper.BatchHelper;
+import com.instisoft.form.helper.CourseHelper;
+import com.instisoft.form.helper.FacultyHelper;
 
 
 public class StudentForm2 extends JPanel {
@@ -31,7 +36,12 @@ public class StudentForm2 extends JPanel {
 	private JTextField textField_4;
 	private JTextField textField_16;
 	private JTextField textField_17;
-	private JButton btnAdd;
+	private JComboBox<String> comboCourses;
+	private JComboBox<String> comboBatches;
+	private JComboBox<String> comboPaymentType;
+	private JComboBox<String> comboPaymentStatus;
+	
+	
 	
 	public StudentForm2() {
 		super();
@@ -204,29 +214,99 @@ public class StudentForm2 extends JPanel {
 		textField_17.setBounds(272, 102, 200, 30);
 		add(textField_17);
 		
-		
-		btnAdd = new JButton(addIcon);
-		btnAdd.setBounds(27, 293, addIcon.getIconWidth(), addIcon.getIconHeight());
-		btnAdd.setBackground(null);		
-		btnAdd.setForeground(Color.WHITE);
-		btnAdd.setFocusPainted(false);
-		
-//		APPLYING C.O.B
-		btnAdd.setContentAreaFilled(false);
-		btnAdd.setOpaque(true);
-		btnAdd.setBorderPainted(false);
-//		btnAdd.setBorder(new RoundedBorder(50));
-		btnAdd.addActionListener((event)->{
-			
+		comboCourses = new JComboBox<>();
+		renderCoursesOnCB();
+		comboCourses.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		comboCourses.setBorder(new EmptyBorder(0, 10, 0, 10));
+		comboCourses.setBounds(27, 331, 200, 30);
+		comboCourses.addActionListener((event)->{
+			renderBatchesOnCB();
 		});
-		btnAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		add(btnAdd);
+		add(comboCourses);
 		
-		JLabel lblAddAnotherInsitution = new JLabel("Add another Insitution");
-		lblAddAnotherInsitution.setForeground(Color.WHITE);
-		lblAddAnotherInsitution.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		lblAddAnotherInsitution.setBounds(93, 293, 154, 50);
-		add(lblAddAnotherInsitution);
+		JLabel lblCourse = new JLabel("Select the Course");
+		lblCourse.setForeground(Color.WHITE);
+		lblCourse.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblCourse.setBounds(27, 308, 145, 23);
+		add(lblCourse);
 		
+		JLabel lblBatches = new JLabel("Choose the Batch");
+		lblBatches.setForeground(Color.WHITE);
+		lblBatches.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblBatches.setBounds(27, 382, 145, 23);
+		add(lblBatches);
+		
+		comboBatches = new JComboBox<>();
+		renderBatchesOnCB();
+		comboBatches.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		comboBatches.setBorder(new EmptyBorder(0, 10, 0, 10));
+		comboBatches.setBounds(27, 406, 200, 30);
+		add(comboBatches);
+		
+		JLabel lblSelectPaymentType = new JLabel("Select Payment Type");
+		lblSelectPaymentType.setForeground(Color.WHITE);
+		lblSelectPaymentType.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblSelectPaymentType.setBounds(335, 313, 145, 23);
+		add(lblSelectPaymentType);
+		
+		comboPaymentType = new JComboBox<>(new String[]{"Check","Cash Pay","Demand Draft","Debit/Credit Card","E-Banking"});
+		comboPaymentType.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		comboPaymentType.setBorder(new EmptyBorder(0, 10, 0, 10));
+		comboPaymentType.setBounds(335, 336, 173, 30);
+		add(comboPaymentType);
+		
+		JLabel lblPaymentStatus = new JLabel("Set Payment Status");
+		lblPaymentStatus.setForeground(Color.WHITE);
+		lblPaymentStatus.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblPaymentStatus.setBounds(335, 387, 145, 23);
+		add(lblPaymentStatus);
+		
+		comboPaymentStatus = new JComboBox<>(new String[]{"Complete Payment","Installments","Due Payment"});
+		comboPaymentStatus.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		comboPaymentStatus.setBorder(new EmptyBorder(0, 10, 0, 10));
+		comboPaymentStatus.setBounds(335, 411, 173, 30);
+		add(comboPaymentStatus);
+		
+	}
+	
+	
+	
+	public void renderBatchesOnCB(){
+		ArrayList<String> batchComboList = null;
+		try {
+			batchComboList = BatchHelper.fetchBatchList(comboCourses.getItemAt(comboCourses.getSelectedIndex()));
+			setComboBox(batchComboList, comboBatches);
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void renderCoursesOnCB(){
+		ArrayList<String> courseComboList = null;
+		try {
+			courseComboList = CourseHelper.fetchCourseList();
+			setComboBox(courseComboList, comboCourses);
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	private void setComboBox(ArrayList<String> dataList, JComboBox<String> comboBox){
+		
+		
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel();
+		
+		if(dataList != null){
+			dataList.forEach((data)->{
+				model.addElement(data);
+			});
+		}
+		
+		comboBox.setModel(model);
 	}
 }

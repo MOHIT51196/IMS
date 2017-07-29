@@ -162,4 +162,54 @@ public class FacultyDAO implements IFacultyDAO {
 		
 		return facultyNameList;
 	}
+	
+	public static ArrayList<String> readNamesByCourse() throws SQLException, ClassNotFoundException {
+		
+		Connection connection = null;
+		PreparedStatement stmtName = null;
+		ResultSet rsName =null;
+		
+		try{
+			connection = getConnection();
+			
+			stmtName = connection.prepareStatement(READ_FACULTY_NAMES_SQL);
+			
+			rsName = stmtName.executeQuery();
+			
+			if(rsName.getMetaData().getColumnCount() > 0){
+				
+				if(facultyNameList == null){
+					facultyNameList = new ArrayList<>();
+				}
+				else{
+					facultyNameList.clear();
+				}
+				
+				while(rsName.next()){
+					
+					facultyNameList.add(rsName.getString("fname"));
+
+				}
+			}
+			
+		}
+		finally{
+			
+			if(rsName != null){
+				rsName.close();
+			}
+			
+			if(stmtName != null){
+				stmtName.close();
+			}
+			
+			if(connection != null){
+				connection.close();
+			}
+		}
+		
+		
+		
+		return facultyNameList;
+	}
 }

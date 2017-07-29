@@ -11,4 +11,9 @@ public class FacultyHelper {
 		
 		return FacultyDAO.readNamesByCourse(courseName);
 	}
+	
+	public static ArrayList<String> fetchFacultyList() throws ClassNotFoundException, SQLException{
+		
+		return FacultyDAO.readNamesByCourse();
+	}
 }

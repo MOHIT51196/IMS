@@ -1,10 +1,6 @@
 package com.instisoft.form.dao;
 
-import static com.instisoft.common.ICommonSQL.ADD_COURSE_SQL;
-import static com.instisoft.common.ICommonSQL.FIND_COURSE$FACULTY_SQL;
-import static com.instisoft.common.ICommonSQL.FIND_COURSE_SQL;
-import static com.instisoft.common.ICommonSQL.READ_COURSE_LIST_SQL;
-import static com.instisoft.common.ICommonSQL.READ_COURSE_NAMES_SQL;
+import static com.instisoft.common.ICommonSQL.*;
 import static com.instisoft.user.common.ICommonDAO.getConnection;
 
 import java.sql.Connection;
@@ -50,7 +46,6 @@ public class CourseDAO implements ICourseDAO {
 					courseDTO.setCategory(rsCourse.getString("category"));
 					courseDTO.setCourceFee(rsCourse.getDouble("fee"));
 					courseDTO.setTotalClasses(rsCourse.getInt("noc"));
-					courseDTO.setBatchSchedule(rsCourse.getString("schedule"));
 					
 					stmtFaculty = connection.prepareStatement(FIND_COURSE$FACULTY_SQL);
 					stmtFaculty.setString(1, rsCourse.getString("cname"));
@@ -120,34 +115,65 @@ public class CourseDAO implements ICourseDAO {
 	@Override
 	public boolean write(CourseDTO courseDTO) throws ClassNotFoundException, SQLException {
 		
+		boolean isSuccess = false;
+		
 		Connection connection = null;
-		PreparedStatement statement = null;
-		int rowCount = 0;
+		PreparedStatement stmtCourse = null;
+		
+		PreparedStatement stmtCourse$Faculty = null;
+		
 		
 		try{
 			connection = getConnection();
 			connection.setAutoCommit(false);
-			statement = connection.prepareStatement(ADD_COURSE_SQL);
-			statement.setString(1, courseDTO.getId());
-			statement.setString(2, courseDTO.getName());
-			statement.setString(3, courseDTO.getCategory());
-			statement.setDouble(4, courseDTO.getCourceFee());
-			statement.setInt(5, courseDTO.getTotalClasses());
-			statement.setString(6, courseDTO.getBatchSchedule());
-			rowCount = statement.executeUpdate();
 			
-			if(rowCount > 0){
+			stmtCourse = connection.prepareStatement(ADD_COURSE_SQL);
+			stmtCourse.setString(1, courseDTO.getId());
+			stmtCourse.setString(2, courseDTO.getName());
+			stmtCourse.setString(3, courseDTO.getCategory());
+			stmtCourse.setDouble(4, courseDTO.getCourceFee());
+			stmtCourse.setInt(5, courseDTO.getTotalClasses());
+			
+
+			if(stmtCourse.executeUpdate() > 0){
 				connection.commit();
-				return true;
+				isSuccess = true;
+
 			}
 			else{
 				connection.rollback();
 			}
+			
+			
+			// ADDING TO COURSE$FACULTY
+			for(String facultyName : courseDTO.getFacultyNameList()){			
+				
+				stmtCourse$Faculty = connection.prepareStatement(ADD_COURSE$FACULTY);
+				stmtCourse$Faculty.setString(1, courseDTO.getId());
+				stmtCourse$Faculty.setString(2, facultyName);
+			
+			
+				if(stmtCourse$Faculty.executeUpdate() > 0){
+					connection.commit();
+					
+				}
+				else{
+					connection.rollback();
+					
+				}
+				
+			}
+			
+				
+			
 		}
 		finally{
+			if(stmtCourse$Faculty != null){
+				stmtCourse$Faculty.close();
+			}
 			
-			if(statement != null){
-				statement.close();
+			if(stmtCourse != null){
+				stmtCourse.close();
 			}
 			
 			if(connection != null){
@@ -155,7 +181,7 @@ public class CourseDAO implements ICourseDAO {
 			}
 		}
 		
-		return false;
+		return isSuccess;
 	}
 
 	@Override

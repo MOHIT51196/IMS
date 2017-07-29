@@ -1,4 +1,5 @@
 package com.instisoft.form.dto;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
 public class CourseDTO implements Comparable<CourseDTO>{
@@ -6,6 +7,7 @@ public class CourseDTO implements Comparable<CourseDTO>{
 	private String name;
 	private String category;
 	private double courceFee;
+	private ArrayList<String> facultyNameList = new ArrayList<>();
 	private LinkedHashSet<FacultyDTO> facultySet = new LinkedHashSet<>();
 	private int totalClasses;
 	private String batchSchedule;
@@ -66,6 +68,16 @@ public class CourseDTO implements Comparable<CourseDTO>{
 
 	public void setBatchSchedule(String batchSchedule) {
 		this.batchSchedule = batchSchedule;
+	}
+	
+	
+
+	public ArrayList<String> getFacultyNameList() {
+		return facultyNameList;
+	}
+
+	public void setFacultyNameList(ArrayList<String> facultyNameList) {
+		this.facultyNameList = facultyNameList;
 	}
 
 	@Override
