@@ -6,10 +6,13 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -214,13 +217,34 @@ public class CourseFormPanel extends JPanel {
 		lblFaculty.setBounds(27, 354, 140, 23);
 		add(lblFaculty);
 		
-		textField_Faculty = new JTextField();
+		/*textField_Faculty = new JTextField();
 		textField_Faculty.setHorizontalAlignment(SwingConstants.LEFT);
 		textField_Faculty.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		textField_Faculty.setColumns(10);
 		textField_Faculty.setBorder(new EmptyBorder(0, 10, 0, 10));
 		textField_Faculty.setBounds(27, 378, 200, 30);
-		add(textField_Faculty);
+		add(textField_Faculty);*/
+		
+		String[] Faculty = { "A", "B", "C", "D", "E" };
+
+		//Create the combo box, select item at index 4.
+		//Indices start at 0, so 4 specifies the pig.
+		JComboBox FacultyDropdown = new JComboBox(Faculty);
+		FacultyDropdown.setSelectedIndex(1);
+		FacultyDropdown.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		FacultyDropdown.setBounds(27, 378, 200, 30);
+		add(FacultyDropdown);
+		
+		/*FacultyDropdown.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JComboBox cb = (JComboBox)e.getSource();
+		        String petName = (String)cb.getSelectedItem();
+			}
+		})*/
+
 		
 		JLabel lblSchedule = new JLabel("Batch Schedule");
 		lblSchedule.setForeground(Color.WHITE);
