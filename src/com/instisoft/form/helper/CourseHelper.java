@@ -23,6 +23,12 @@ public class CourseHelper {
 		return false;
 	}
 	
+
+	public static ArrayList<String> fetchCourseList() throws ClassNotFoundException, SQLException{
+		
+		return CourseDAO.readNames();
+	}
+	
 	public boolean addCourse(CourseDTO courseDTO) throws ClassNotFoundException, SQLException{
 		
 		if(courseDTO != null){

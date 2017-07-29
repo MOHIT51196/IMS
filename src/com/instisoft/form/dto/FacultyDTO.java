@@ -7,7 +7,10 @@ public class FacultyDTO implements Comparable<FacultyDTO>{
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private String email;
+	private String primaryEmail;
+	private String secondaryEmail;
+	private String primaryContact;
+	private String secondaryContact;
 	private LinkedHashMap<String, String> contactMap = new LinkedHashMap<>();	//primary and secondary
 	private LinkedHashMap<String, Address> addressMap = new LinkedHashMap<>();	//permanent and temporary
 	private LinkedHashMap<String, Institution> instituteMap = new LinkedHashMap<>();	//Institute worked at
@@ -17,8 +20,9 @@ public class FacultyDTO implements Comparable<FacultyDTO>{
 	private BatchDTO batch;
 	private String status;		//permanent or temporary
 
+
 	
-	
+
 	public String getId() {
 		return id;
 	}
@@ -48,6 +52,9 @@ public class FacultyDTO implements Comparable<FacultyDTO>{
 		this.lastName = lastName;
 	}
 
+	public String getName(){
+		return this.firstName + " " + this.lastName;
+	}
 
 	public String getGender() {
 		return gender;
@@ -59,13 +66,43 @@ public class FacultyDTO implements Comparable<FacultyDTO>{
 	}
 
 
-	public String getEmail() {
-		return email;
+	public String getPrimaryEmail() {
+		return primaryEmail;
 	}
 
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPrimaryEmail(String primaryEmail) {
+		this.primaryEmail = primaryEmail;
+	}
+
+
+	public String getSecondaryEmail() {
+		return secondaryEmail;
+	}
+
+
+	public void setSecondaryEmail(String secondaryEmail) {
+		this.secondaryEmail = secondaryEmail;
+	}
+
+
+	public String getPrimaryContact() {
+		return primaryContact;
+	}
+
+
+	public void setPrimaryContact(String primaryContact) {
+		this.primaryContact = primaryContact;
+	}
+
+
+	public String getSecondaryContact() {
+		return secondaryContact;
+	}
+
+
+	public void setSecondaryContact(String secondaryContact) {
+		this.secondaryContact = secondaryContact;
 	}
 
 

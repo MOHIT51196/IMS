@@ -23,6 +23,11 @@ private BatchDAO batchDAO;
 		return false;
 	}
 	
+	public static ArrayList<String> fetchBatchList(String courseName) throws ClassNotFoundException, SQLException{
+		
+		return BatchDAO.readNamesByCourse(courseName);
+	}
+	
 	public boolean addBatch(BatchDTO batchDTO) throws ClassNotFoundException, SQLException{
 		
 		if(batchDTO != null){

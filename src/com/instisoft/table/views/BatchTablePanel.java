@@ -263,7 +263,7 @@ public class BatchTablePanel extends JPanel {
 						batch.getName(),
 						batch.getCourse().getName(),
 						batch.getCategory(),
-						batch.getFaculty(),
+						batch.getFaculty().getName(),
 						batch.getStartDate(),
 						batch.getEndDate(),
 						batch.getHours(),

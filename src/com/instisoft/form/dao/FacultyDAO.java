@@ -1,7 +1,6 @@
 package com.instisoft.form.dao;
 
-import static com.instisoft.common.ICommonSQL.ADD_BATCH_SQL;
-import static com.instisoft.common.ICommonSQL.READ_BATCH_LIST_SQL;
+import static com.instisoft.common.ICommonSQL.*;
 import static com.instisoft.user.common.ICommonDAO.getConnection;
 
 import java.sql.Connection;
@@ -13,6 +12,8 @@ import java.util.ArrayList;
 import com.instisoft.form.dto.FacultyDTO;
 
 public class FacultyDAO implements IFacultyDAO {
+	
+	private static ArrayList<String> facultyNameList;
 
 	// Reading the Batches from the DB and adding to batches Table
 	@Override
@@ -110,5 +111,55 @@ public class FacultyDAO implements IFacultyDAO {
 	public boolean delete() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public static ArrayList<String> readNamesByCourse(String courseName) throws SQLException, ClassNotFoundException {
+		
+		Connection connection = null;
+		PreparedStatement stmtName = null;
+		ResultSet rsName =null;
+		
+		try{
+			connection = getConnection();
+			
+			stmtName = connection.prepareStatement(FIND_COURSE$FACULTY_SQL);
+			stmtName.setString(1, courseName);
+			rsName = stmtName.executeQuery();
+			
+			if(rsName.getMetaData().getColumnCount() > 0){
+				
+				if(facultyNameList == null){
+					facultyNameList = new ArrayList<>();
+				}
+				else{
+					facultyNameList.clear();
+				}
+				
+				while(rsName.next()){
+					
+					facultyNameList.add(rsName.getString("fname"));
+
+				}
+			}
+			
+		}
+		finally{
+			
+			if(rsName != null){
+				rsName.close();
+			}
+			
+			if(stmtName != null){
+				stmtName.close();
+			}
+			
+			if(connection != null){
+				connection.close();
+			}
+		}
+		
+		
+		
+		return facultyNameList;
 	}
 }

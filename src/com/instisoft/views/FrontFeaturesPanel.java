@@ -2,35 +2,26 @@ package com.instisoft.views;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Graphics;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.SystemColor;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.awt.Font;
-
 public class FrontFeaturesPanel extends JPanel {
 	
-	private static JPanel contentPane;
-	private BufferedImage image;
 
-	/**
-	 * Create the panel.
-	 * @throws IOException 
-	 */
-	public FrontFeaturesPanel() throws IOException {
+	private static final long serialVersionUID = 1L;
+	
+	private static JPanel contentPane;
+	
+
+	public FrontFeaturesPanel() {
 		setSize(1118, 450);
 		setBackground(null);
 		setOpaque(false);
@@ -400,5 +391,5 @@ public class FrontFeaturesPanel extends JPanel {
 			}
 		});
 	
-}
+	}
 }

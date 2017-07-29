@@ -11,50 +11,72 @@ import java.util.ArrayList;
 
 import com.instisoft.form.dto.BatchDTO;
 import com.instisoft.form.dto.CourseDTO;
+import com.instisoft.form.dto.FacultyDTO;
 
 public class BatchDAO implements IBatchDAO {
+
+	private static ArrayList<String> batchNameList;
 
 	// Reading the Batches from the DB and adding to batches Table
 		@Override
 		public boolean read(ArrayList<BatchDTO> batchList) throws ClassNotFoundException, SQLException {
 			
 			Connection connection = null;
-			PreparedStatement statement = null;
-			ResultSet resultSet =null;
+			PreparedStatement stmtBatch = null;
+			ResultSet rsBatch =null;
 			
+			PreparedStatement stmtFaculty = null;
+			ResultSet rsFaculty = null;
 			
 			try{
 				connection = getConnection();
 				
-				statement = connection.prepareStatement(READ_BATCH_LIST_SQL);
-
-				resultSet = statement.executeQuery();
+				stmtBatch = connection.prepareStatement(READ_BATCH_LIST_SQL);
 				
-				if(resultSet.getMetaData().getColumnCount() > 0){
+				rsBatch = stmtBatch.executeQuery();
+				
+				if(rsBatch.getMetaData().getColumnCount() > 0){
 					
-					while(resultSet.next()){
+					while(rsBatch.next()){
 						
 						BatchDTO batchDTO = new BatchDTO();
 						
-						batchDTO.setId(resultSet.getString("bid"));
-						batchDTO.setName(resultSet.getString("name"));
-						batchDTO.setCategory(resultSet.getString("category"));
-						batchDTO.setStartDate(resultSet.getString("startdate"));
-						batchDTO.setEndDate(resultSet.getString("enddate"));
-						batchDTO.setTime(resultSet.getString("time"));
-						batchDTO.setHours(resultSet.getDouble("hour"));
+						batchDTO.setId(rsBatch.getString("bid"));
+						batchDTO.setName(rsBatch.getString("bname"));
+						batchDTO.setCategory(rsBatch.getString("category"));
+						batchDTO.setStartDate(rsBatch.getString("startdate"));
+						batchDTO.setEndDate(rsBatch.getString("enddate"));
+						batchDTO.setTime(rsBatch.getString("time"));
+						batchDTO.setHours(rsBatch.getDouble("hour"));
 						
-//						CourseDTO courseDTO = CourseDAO.readById(resultSet.getString("cid"));
+//						CourseDTO courseDTO = CourseDAO.readById(rsBatch.getString("cid"));
 						CourseDTO courseDTO = new CourseDTO();
-						
-						courseDTO.setId(resultSet.getString("cid"));
-						courseDTO.setName(resultSet.getString("name"));
-						courseDTO.setCategory(resultSet.getString("category"));
-						courseDTO.setCourceFee(resultSet.getDouble("fee"));
-						courseDTO.setTotalClasses(resultSet.getInt("noc"));
-						courseDTO.setBatchSchedule(resultSet.getString("schedule"));
+						courseDTO.setId(rsBatch.getString("cid"));
+						courseDTO.setName(rsBatch.getString("cname"));
 						
 						batchDTO.setCourse(courseDTO);
+						
+						stmtFaculty = connection.prepareStatement(FIND_BATCH$FACULTY_SQL);
+						stmtFaculty.setString(1, rsBatch.getString("bname"));
+						rsFaculty = stmtFaculty.executeQuery();
+						
+						if(rsFaculty.next()){
+							FacultyDTO facultyDTO = new FacultyDTO();
+							facultyDTO.setId(rsFaculty.getString("fid"));
+							facultyDTO.setFirstName(rsFaculty.getString("fname").split(" ")[0]);
+							facultyDTO.setLastName(rsFaculty.getString("fname").split(" ")[1]);
+							facultyDTO.setGender(rsFaculty.getString("gender"));
+							facultyDTO.setDob(rsFaculty.getString("dob"));
+							facultyDTO.setPrimaryEmail(rsFaculty.getString("pemail"));
+							facultyDTO.setSecondaryEmail(rsFaculty.getString("semail"));
+							facultyDTO.setPrimaryContact(rsFaculty.getString("pphone"));
+							facultyDTO.setSecondaryContact(rsFaculty.getString("sphone"));
+							facultyDTO.setDoj(rsFaculty.getString("doj"));
+							facultyDTO.setSalary(rsFaculty.getString("salary"));
+							facultyDTO.setStatus(rsFaculty.getString("status"));
+							
+							batchDTO.setFaculty(facultyDTO);
+						}
 						
 						batchList.add(batchDTO);
 						
@@ -65,12 +87,12 @@ public class BatchDAO implements IBatchDAO {
 				
 			}
 			finally{
-				if(resultSet != null){
-					resultSet.close();
+				if(rsBatch != null){
+					rsBatch.close();
 				}
 				
-				if(statement != null){
-					statement.close();
+				if(stmtBatch != null){
+					stmtBatch.close();
 				}
 				
 				if(connection != null){
@@ -85,23 +107,23 @@ public class BatchDAO implements IBatchDAO {
 		public boolean write(BatchDTO batchDTO) throws ClassNotFoundException, SQLException {
 			
 			Connection connection = null;
-			PreparedStatement statement = null;
+			PreparedStatement stmtBatch = null;
 			int rowCount = 0;
 			
 			try{
 				connection = getConnection();
 				connection.setAutoCommit(false);
-				statement = connection.prepareStatement(ADD_BATCH_SQL);
-				statement.setString(1, batchDTO.getId());
-				statement.setString(2, batchDTO.getName());
-				statement.setString(3, batchDTO.getCourseId());
-				statement.setString(4, batchDTO.getCategory());
-				statement.setString(5, batchDTO.getStartDate());
-				statement.setString(6, batchDTO.getEndDate());
-				statement.setString(7, batchDTO.getTime());
-				statement.setDouble(8, batchDTO.getHours());
+				stmtBatch = connection.prepareStatement(ADD_BATCH_SQL);
+				stmtBatch.setString(1, batchDTO.getId());
+				stmtBatch.setString(2, batchDTO.getName());
+				stmtBatch.setString(3, batchDTO.getCourseId());
+				stmtBatch.setString(4, batchDTO.getCategory());
+				stmtBatch.setString(5, batchDTO.getStartDate());
+				stmtBatch.setString(6, batchDTO.getEndDate());
+				stmtBatch.setString(7, batchDTO.getTime());
+				stmtBatch.setDouble(8, batchDTO.getHours());
 				
-				rowCount = statement.executeUpdate();
+				rowCount = stmtBatch.executeUpdate();
 				
 				if(rowCount > 0){
 					connection.commit();
@@ -113,8 +135,8 @@ public class BatchDAO implements IBatchDAO {
 			}
 			finally{
 				
-				if(statement != null){
-					statement.close();
+				if(stmtBatch != null){
+					stmtBatch.close();
 				}
 				
 				if(connection != null){
@@ -135,5 +157,56 @@ public class BatchDAO implements IBatchDAO {
 		public boolean delete() {
 			// TODO Auto-generated method stub
 			return false;
+		}
+
+	
+		public static ArrayList<String> readNamesByCourse(String courseName) throws SQLException, ClassNotFoundException {
+			
+			Connection connection = null;
+			PreparedStatement stmtName = null;
+			ResultSet rsName =null;
+			
+			try{
+				connection = getConnection();
+				
+				stmtName = connection.prepareStatement(FIND_COURSE$BATCH_SQL);
+				stmtName.setString(1, courseName);
+				rsName = stmtName.executeQuery();
+				
+				if(rsName.getMetaData().getColumnCount() > 0){
+					
+					if(batchNameList == null){
+						batchNameList = new ArrayList<>();
+					}
+					else{
+						batchNameList.clear();
+					}
+					
+					while(rsName.next()){
+						
+						batchNameList.add(rsName.getString("bname"));
+
+					}
+				}
+				
+			}
+			finally{
+				
+				if(rsName != null){
+					rsName.close();
+				}
+				
+				if(stmtName != null){
+					stmtName.close();
+				}
+				
+				if(connection != null){
+					connection.close();
+				}
+			}
+			
+			
+			
+			return batchNameList;
 		}
 }

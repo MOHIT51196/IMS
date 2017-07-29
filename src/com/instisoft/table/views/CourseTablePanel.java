@@ -245,10 +245,11 @@ public class CourseTablePanel extends JPanel {
 						course.getName(),
 						course.getCategory(),
 						course.getCourceFee(),
-						course.getFacultySet(),
+						course.getFacultySet().iterator().next().getName(),
 						course.getTotalClasses(),
 						course.getBatchSchedule()
 					};
+					
 					
 					
 					model.addRow(arrCourse);

@@ -1,8 +1,11 @@
 package com.instisoft.views;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.SystemColor;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -10,12 +13,15 @@ import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class HomeScreenPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	private FrontFeaturesPanel featuresPanel;
 	private JPanel socialLinkPanel;
 	
 	static Desktop desktop = Desktop.getDesktop();
@@ -33,6 +39,12 @@ public class HomeScreenPanel extends JPanel {
 		setBackground(null);
 		setOpaque(false);
 		
+		// FRONT FACE PANEL
+		featuresPanel = new FrontFeaturesPanel();
+		featuresPanel.setLocation(0, 40);
+		add(featuresPanel);
+		
+		// SOCIAL LINKS PANEL
 		socialLinkPanel = new JPanel();
 		socialLinkPanel.setBounds(912, 510, 200, 40);
 		socialLinkPanel.setOpaque(false);
@@ -78,6 +90,39 @@ public class HomeScreenPanel extends JPanel {
 	public void renderHome(){
 		
 		socialLinkPanel.setVisible(true);
+	}
+	
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JFrame frame = new JFrame();
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setBounds(100, 100, 1400, 1000);
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					frame.getContentPane().setLayout(null);
+					frame.setBackground(Color.GRAY);
+					
+					JPanel contentPane = new JPanel();
+					contentPane.setBackground(SystemColor.windowBorder);
+					contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+					contentPane.setLayout(null);
+					contentPane.add(new HomeScreenPanel());
+					frame.setContentPane(contentPane);
+					
+					
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	
 	}
 
 }

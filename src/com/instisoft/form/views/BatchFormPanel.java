@@ -7,9 +7,12 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.TextArea;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,7 +23,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.instisoft.form.dto.BatchDTO;
+import com.instisoft.form.dto.FacultyDTO;
 import com.instisoft.form.helper.BatchHelper;
+import com.instisoft.form.helper.CourseHelper;
+import com.instisoft.form.helper.FacultyHelper;
 import com.instisoft.table.views.BatchTablePanel;
 import com.instisoft.utils.GUILookAndFeel;
 
@@ -30,7 +36,7 @@ public class BatchFormPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private JTextField textField_Category;
-	private JTextField textField_Faculty;
+	private JComboBox<String> comboFaculties;
 	private JTextField textField_Timing;
 	private JTextField textField_Hours;
 	
@@ -38,17 +44,19 @@ public class BatchFormPanel extends JPanel {
 	private BatchHelper batchHelper;
 	private BatchTablePanel batchTablePanel;
 	private JTextField textField_Name;
-	private JTextField textField_Course;
+	private JComboBox<String> comboCourses;
 	private JTextArea textArea_Desc;
 	private JTextField textField_BatchId;
 	private JTextField textField_StartDate;
 	private JTextField textField_EndDate;
+	
 	
 	{
 		batchDTO = new BatchDTO();
 		batchHelper = new BatchHelper();
 		
 		batchTablePanel = BatchTablePanel.newInstance();
+		
 	}
 	
 	
@@ -136,13 +144,18 @@ public class BatchFormPanel extends JPanel {
 		lblCourse.setBounds(27, 77, 123, 23);
 		add(lblCourse);
 		
-		textField_Course = new JTextField();
-		textField_Course.setHorizontalAlignment(SwingConstants.LEFT);
-		textField_Course.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		textField_Course.setColumns(10);
-		textField_Course.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Course.setBounds(27, 100, 200, 30);
-		add(textField_Course);
+		
+		
+		
+		comboCourses = new JComboBox<>();
+		renderCoursesOnCB();
+		comboCourses.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		comboCourses.setBorder(new EmptyBorder(0, 10, 0, 10));
+		comboCourses.setBounds(27, 100, 200, 30);
+		comboCourses.addActionListener((event)->{
+			renderFacultiesOnCB();
+		});
+		add(comboCourses);
 		
 		JLabel lblCategory = new JLabel("Batch Category");
 		lblCategory.setForeground(Color.WHITE);
@@ -246,13 +259,13 @@ public class BatchFormPanel extends JPanel {
 		lblFaculty.setBounds(27, 354, 157, 23);
 		add(lblFaculty);
 		
-		textField_Faculty = new JTextField();
-		textField_Faculty.setHorizontalAlignment(SwingConstants.LEFT);
-		textField_Faculty.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		textField_Faculty.setColumns(10);
-		textField_Faculty.setBorder(new EmptyBorder(0, 10, 0, 10));
-		textField_Faculty.setBounds(27, 378, 200, 30);
-		add(textField_Faculty);
+		
+		comboFaculties = new JComboBox<>();
+		renderFacultiesOnCB();
+		comboFaculties.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		comboFaculties.setBorder(new EmptyBorder(0, 10, 0, 10));
+		comboFaculties.setBounds(27, 378, 200, 30);
+		add(comboFaculties);
 		
 		JLabel lblTiming = new JLabel("Batch Timing");
 		lblTiming.setForeground(Color.WHITE);
@@ -286,9 +299,9 @@ public class BatchFormPanel extends JPanel {
 	private void resetFields(){
 		textField_BatchId.setText("");
 		textField_Name.setText("");
-		textField_Course.setText("");
+		comboCourses.setSelectedIndex(0);
 		textField_Category.setText("");
-		textField_Faculty.setText("");
+		comboFaculties.setSelectedIndex(0);
 		textField_StartDate.setText("");
 		textField_EndDate.setText("");
 		textField_Timing.setText("");
@@ -298,13 +311,53 @@ public class BatchFormPanel extends JPanel {
 	private void setFields(){
 		batchDTO.setId(textField_BatchId.getText());
 		batchDTO.setName(textField_Name.getText());
-		batchDTO.setCourseId(textField_Course.getText());
+		batchDTO.setCourseId((String)comboCourses.getSelectedItem());
 		batchDTO.setCategory(textField_Category.getText());
-		batchDTO.setFaculty(null);
+		batchDTO.setFaculty((FacultyDTO)comboFaculties.getSelectedItem());
 		batchDTO.setStartDate(textField_StartDate.getText());
 		batchDTO.setEndDate(textField_EndDate.getText());
 		batchDTO.setTime(textField_Timing.getText());
 		batchDTO.setHours(Integer.parseInt(textField_Hours.getText()));
+	}
+	
+	
+	public void renderFacultiesOnCB(){
+		ArrayList<String> facultyComboList = null;
+		try {
+			facultyComboList = FacultyHelper.fetchFacultyList(comboCourses.getItemAt(comboCourses.getSelectedIndex()));
+			setComboBox(facultyComboList, comboFaculties);
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void renderCoursesOnCB(){
+		ArrayList<String> courseComboList = null;
+		try {
+			courseComboList = CourseHelper.fetchCourseList();
+			setComboBox(courseComboList, comboCourses);
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	private void setComboBox(ArrayList<String> dataList, JComboBox<String> comboBox){
+		
+		
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel();
+		
+		if(dataList != null){
+			dataList.forEach((data)->{
+				model.addElement(data);
+			});
+		}
+		
+		comboBox.setModel(model);
 	}
 	
 	/**
@@ -337,5 +390,4 @@ public class BatchFormPanel extends JPanel {
 			}
 		});
 	}
-
 }

@@ -2,7 +2,7 @@ package com.instisoft.form.dto;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class Student implements Comparable<Student>{
+public class StudentDTO implements Comparable<StudentDTO>{
 
 	private String id;
 	private String firstName;
@@ -49,6 +49,11 @@ public class Student implements Comparable<Student>{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+	public String getName(){
+		return this.firstName + " " + this.lastName;
+	}
+
 
 	public String getFatherName() {
 		return fatherName;
@@ -193,15 +198,15 @@ public class Student implements Comparable<Student>{
 			return true;
 		}
 		
-		if(obj instanceof Student){
-			return this.id.equals(((Student) obj).getId());
+		if(obj instanceof StudentDTO){
+			return this.id.equals(((StudentDTO) obj).getId());
 		}
 		
 		return false;
 	}
 
 	@Override
-	public int compareTo(Student student) {
+	public int compareTo(StudentDTO student) {
 		return this.id.compareTo(student.getId());
 	}
 }

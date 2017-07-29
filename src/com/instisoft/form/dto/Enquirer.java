@@ -40,6 +40,12 @@ public class Enquirer {
 		this.lastName = lastName;
 	}
 	
+
+	public String getName(){
+		return this.firstName + " " + this.lastName;
+	}
+
+	
 	public Date getDate() {
 		return date;
 	}
