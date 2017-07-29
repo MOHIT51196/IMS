@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 import com.instisoft.form.views.AdmissionFormPanel;
@@ -34,13 +33,13 @@ import com.instisoft.table.views.TestSchedulePanel;
 public class MenuBar extends JMenuBar {
 
 	private static final long serialVersionUID = 1L;
-	private JFrame masterFrame;
+	private DashBoard dashBoard;
 	private Color bgColor;
 	
 	
 	public MenuBar(JFrame masterFrame) {
 		
-		this.masterFrame = masterFrame;
+		this.dashBoard = (masterFrame instanceof DashBoard) ? (DashBoard)masterFrame : null;
 		
 		bgColor = new Color(169,169,169);
 		setBorderPainted(false);
@@ -81,7 +80,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(UpcomingEvents);
 		UpcomingEvents.addActionListener((event)->{
 			
-			renderPanel("Upcoming Events", eventTablePanel);
+			dashBoard.renderPanel("Upcoming Events", eventTablePanel);
 		
 		});
 		mnEvents.add(UpcomingEvents);
@@ -89,7 +88,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(RecentEvents);
 		RecentEvents.addActionListener((event)->{
 			
-			renderPanel("Recent Events", recentEventPanel);
+			dashBoard.renderPanel("Recent Events", recentEventPanel);
 		
 		});
 		mnEvents.add(RecentEvents);
@@ -97,7 +96,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(AddEvents);
 		AddEvents.addActionListener((event)->{
 			
-			renderPanel("Create Event", eventFormPanel);
+			dashBoard.renderPanel("Create Event", eventFormPanel);
 			
 		});
 		mnEvents.add(AddEvents);
@@ -110,7 +109,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(DueFees);
 		DueFees.addActionListener((event)->{
 			
-			renderPanel("Due Fees", dueFeesPanel);
+			dashBoard.renderPanel("Due Fees", dueFeesPanel);
 			
 		});
 		mnFees.add(DueFees);
@@ -118,7 +117,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(FeesCollected);
 		FeesCollected.addActionListener((event)->{
 			
-			renderPanel("Fee Collection", feesTablePanel);
+			dashBoard.renderPanel("Fee Collection", feesTablePanel);
 			
 		});
 		mnFees.add(FeesCollected);
@@ -131,7 +130,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(currentCources);
 		currentCources.addActionListener((event)->{
 			
-			renderPanel("Current Cources", courseTablePanel);
+			dashBoard.renderPanel("Current Cources", courseTablePanel);
 		
 		});
 		mnCourses.add(currentCources);
@@ -140,7 +139,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(addCource);
 		addCource.addActionListener((event)->{
 			
-			renderPanel("Create Course", courseFormPanel);
+			dashBoard.renderPanel("Create Course", courseFormPanel);
 		
 		});
 		mnCourses.add(addCource);
@@ -164,7 +163,7 @@ public class MenuBar extends JMenuBar {
 		JMenuItem currentBatches = new JMenuItem("Current Batches");
 		setItemColor(currentBatches);
 		currentBatches.addActionListener((event)->{
-			renderPanel("Current Batches", batchTablePanel);
+			dashBoard.renderPanel("Current Batches", batchTablePanel);
 		});
 		mnBatches.add(currentBatches);
 		
@@ -172,7 +171,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(addBatch);
 		addBatch.addActionListener((event)->{
 			
-			renderPanel("Create Batch", batchFormPanel);
+			dashBoard.renderPanel("Create Batch", batchFormPanel);
 			
 		});
 		mnBatches.add(addBatch);
@@ -198,7 +197,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(newAdmission);
 		newAdmission.addActionListener((event)->{
 			
-			renderPanel("Admission Form", admissionFormPanel);
+			dashBoard.renderPanel("Admission Form", admissionFormPanel);
 			
 		});
 		mnAdmission.add(newAdmission);
@@ -215,7 +214,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void mousePressed(MouseEvent event) {
 				
-				renderPanel("Student Records", studentRecord);
+				dashBoard.renderPanel("Student Records", studentRecord);
 				
 			}
 		});
@@ -231,7 +230,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(Tests);
 		Tests.addActionListener((event)->{
 			
-			renderPanel("Test Schedule", testSchedulePanel);
+			dashBoard.renderPanel("Test Schedule", testSchedulePanel);
 			
 		});
 		mnSchedule.add(Tests);
@@ -239,7 +238,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(Projects);
 		Projects.addActionListener((event)->{
 			
-			renderPanel("Project Schedule", projectSchedulePanel);
+			dashBoard.renderPanel("Project Schedule", projectSchedulePanel);
 			
 		});
 		mnSchedule.add(Projects);
@@ -247,7 +246,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(Holidays);
 		Holidays.addActionListener((event)->{
 			
-			renderPanel("Holiday Schedule", holidaySchedulePanel);
+			dashBoard.renderPanel("Holiday Schedule", holidaySchedulePanel);
 			
 		});
 		mnSchedule.add(Holidays);
@@ -265,7 +264,7 @@ public class MenuBar extends JMenuBar {
 		setItemColor(salesGraphs);
 		salesGraphs.addActionListener((event)->{
 			
-			renderPanel("Sales Graphical Analysis", graphPanel);
+			dashBoard.renderPanel("Sales Graphical Analysis", graphPanel);
 			
 		});
 		mnGraphs.add(salesGraphs);
@@ -307,9 +306,6 @@ public class MenuBar extends JMenuBar {
 
     }
     
-    private void renderPanel(String header, JPanel renderingPanel){
-    	((DashBoard)masterFrame).setHeader(header);
-		((DashBoard)masterFrame).showPanel(renderingPanel);
-    }
+    
 
 }

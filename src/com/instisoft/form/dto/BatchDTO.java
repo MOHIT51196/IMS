@@ -11,7 +11,7 @@ public class BatchDTO {
 	private String endDate;	//estimation of end Date
 	private String time;
 	private double hours;
-	private Faculty faculty;
+	private FacultyDTO faculty;
 	
 	
 	public String getId() {
@@ -68,10 +68,10 @@ public class BatchDTO {
 	public void setHours(double hours) {
 		this.hours = hours;
 	}
-	public Faculty getFaculty() {
+	public FacultyDTO getFaculty() {
 		return faculty;
 	}
-	public void setFaculty(Faculty faculty) {
+	public void setFaculty(FacultyDTO faculty) {
 		this.faculty = faculty;
 	}
 	

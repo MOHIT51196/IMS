@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import com.instisoft.user.views.MainFrame;
@@ -60,6 +61,7 @@ public class NavPanel extends JPanel {
 		menuPanel.setForeground(new Color(0, 0, 0));
 		menuPanel.setBackground(Color.BLACK);
 		menuPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		menuPanel.setBorder(new EmptyBorder(10, 0, 10, 0));
 		add(menuPanel);
 		
 //		but1 = new JButton();
@@ -73,7 +75,7 @@ public class NavPanel extends JPanel {
 		setNavStyle(btnHome);
 		btnHome.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
 		btnHome.addActionListener((event)->{
-			dashBoard.showPanel(dashBoard.getHomeScreenPanel());;
+			dashBoard.renderPanel("Welcome to DashBoard", dashBoard.getHomeScreenPanel());;
 		});
 		menuPanel.add(btnHome);
 		

@@ -43,8 +43,6 @@ public class DashBoard extends JFrame {
 //		for all the panels in the Dashboard
 		panelList = new ArrayList<>();
 		
-		homeScreenPanel = new HomeScreenPanel();
-		
 	}
 	
 	public DashBoard() {
@@ -135,6 +133,7 @@ public class DashBoard extends JFrame {
 		
 		
 		// rendering Home Screen View
+		homeScreenPanel = new HomeScreenPanel();
 		showPanel(homeScreenPanel);
 		
 		JPanel bottomBar = new JPanel();
@@ -146,8 +145,12 @@ public class DashBoard extends JFrame {
 		JLabel lblNewLabel = new JLabel("Copyrights \u00A9 2017 | xyz Corporations");
 		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		lblNewLabel.setBounds(6, 0, 275, 23);
+		lblNewLabel.setBounds(6, 0, 275, 24);
 		bottomBar.add(lblNewLabel);
+		
+		TimerPanel timerPanel = new TimerPanel();
+		timerPanel.setLocation(1180, 0);
+		bottomBar.add(timerPanel);
 		
 		
 //		to be in the end @OverlappingCompenent
@@ -267,7 +270,7 @@ public class DashBoard extends JFrame {
 		});
 	}
 	
-	public void showPanel(JPanel panel){
+	private void showPanel(JPanel panel){
 		
 		hideContainerComponents();
 		
@@ -278,6 +281,11 @@ public class DashBoard extends JFrame {
 			addPanel(panel);
 		}
 	}
+	
+	public void renderPanel(String header, JPanel renderingPanel){
+    	this.setHeader(header);
+		this.showPanel(renderingPanel);
+    }
 	
 	public void addPanel(JPanel panel){
 		panelList.add(panel);

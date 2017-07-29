@@ -26,7 +26,7 @@ public class CourseDAO implements ICourseDAO {
 		try{
 			connection = getConnection();
 			
-			statement = connection.prepareStatement(READ_COURSE_SQL);
+			statement = connection.prepareStatement(READ_COURSE_LIST_SQL);
 
 			resultSet = statement.executeQuery();
 			

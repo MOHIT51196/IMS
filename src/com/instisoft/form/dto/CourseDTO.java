@@ -6,7 +6,7 @@ public class CourseDTO implements Comparable<CourseDTO>{
 	private String name;
 	private String category;
 	private double courceFee;
-	private LinkedHashSet<Faculty> facultySet = new LinkedHashSet<>();
+	private LinkedHashSet<FacultyDTO> facultySet = new LinkedHashSet<>();
 	private int totalClasses;
 	private String batchSchedule;
 	
@@ -51,11 +51,11 @@ public class CourseDTO implements Comparable<CourseDTO>{
 		this.totalClasses = totalClasses;
 	}
 
-	public LinkedHashSet<Faculty> getFacultySet() {
+	public LinkedHashSet<FacultyDTO> getFacultySet() {
 		return facultySet;
 	}
 
-	public void setFacultySet(LinkedHashSet<Faculty> facultySet) {
+	public void setFacultySet(LinkedHashSet<FacultyDTO> facultySet) {
 		this.facultySet = facultySet;
 	}
 	

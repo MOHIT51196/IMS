@@ -14,7 +14,7 @@ import com.instisoft.form.dto.CourseDTO;
 
 public class BatchDAO implements IBatchDAO {
 
-	// Reading the COurses from the DB and adding to Courses Table
+	// Reading the Batches from the DB and adding to batches Table
 		@Override
 		public boolean read(ArrayList<BatchDTO> batchList) throws ClassNotFoundException, SQLException {
 			
@@ -26,7 +26,7 @@ public class BatchDAO implements IBatchDAO {
 			try{
 				connection = getConnection();
 				
-				statement = connection.prepareStatement(READ_BATCH_SQL);
+				statement = connection.prepareStatement(READ_BATCH_LIST_SQL);
 
 				resultSet = statement.executeQuery();
 				
