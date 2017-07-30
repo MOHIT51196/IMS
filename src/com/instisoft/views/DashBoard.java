@@ -143,7 +143,7 @@ public class DashBoard extends JFrame {
 		bottomBar.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Copyrights \u00A9 2017 | xyz Corporations");
-		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setForeground(new Color( 18, 30, 49));
 		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		lblNewLabel.setBounds(6, 0, 275, 24);
 		bottomBar.add(lblNewLabel);

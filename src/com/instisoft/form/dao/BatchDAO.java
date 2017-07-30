@@ -72,7 +72,7 @@ public class BatchDAO implements IBatchDAO {
 							facultyDTO.setPrimaryContact(rsFaculty.getString("pphone"));
 							facultyDTO.setSecondaryContact(rsFaculty.getString("sphone"));
 							facultyDTO.setDoj(rsFaculty.getString("doj"));
-							facultyDTO.setSalary(rsFaculty.getString("salary"));
+							facultyDTO.setSalary(rsFaculty.getDouble("salary"));
 							facultyDTO.setStatus(rsFaculty.getString("status"));
 							
 							batchDTO.setFaculty(facultyDTO);

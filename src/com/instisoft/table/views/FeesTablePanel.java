@@ -217,8 +217,8 @@ public class FeesTablePanel extends JPanel {
 	      tcm.getColumn(2).setPreferredWidth(70);    
 	      tcm.getColumn(3).setPreferredWidth(100);
 	      tcm.getColumn(4).setPreferredWidth(70);
-	      tcm.getColumn(5).setPreferredWidth(90);
-	      tcm.getColumn(6).setPreferredWidth(400);
+	      tcm.getColumn(5).setPreferredWidth(120);
+	      tcm.getColumn(6).setPreferredWidth(200);
 	      /*table.setBackground(Color.GRAY);*/
 	}
 	

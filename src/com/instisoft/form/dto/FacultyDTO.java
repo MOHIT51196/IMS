@@ -16,7 +16,7 @@ public class FacultyDTO implements Comparable<FacultyDTO>{
 	private LinkedHashMap<String, Institution> instituteMap = new LinkedHashMap<>();	//Institute worked at
 	private String dob;
 	private String doj;
-	private String salary;
+	private double salary;
 	private BatchDTO batch;
 	private String status;		//permanent or temporary
 
@@ -156,12 +156,12 @@ public class FacultyDTO implements Comparable<FacultyDTO>{
 	}
 
 
-	public String getSalary() {
+	public double getSalary() {
 		return salary;
 	}
 
 
-	public void setSalary(String salary) {
+	public void setSalary(double salary) {
 		this.salary = salary;
 	}
 

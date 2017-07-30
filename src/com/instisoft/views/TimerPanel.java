@@ -19,7 +19,8 @@ public class TimerPanel extends JLabel {
 		setFont(new Font("SansSerif", Font.PLAIN, 13));
 		setHorizontalAlignment(SwingConstants.CENTER);
 		setVerticalAlignment(SwingConstants.CENTER);
-		setForeground(Color.BLACK);
+		setForeground(new Color( 18, 30, 49));
+		
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yy  hh:mm:ss");
 		

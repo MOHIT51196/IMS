@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.instisoft.form.dto.BatchDTO;
 import com.instisoft.form.dto.FacultyDTO;
 
 public class FacultyDAO implements IFacultyDAO {
@@ -21,23 +22,44 @@ public class FacultyDAO implements IFacultyDAO {
 		
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet resultSet =null;
+		ResultSet rsFaculty =null;
 		
 		
 		try{
 			connection = getConnection();
 			
-			statement = connection.prepareStatement(READ_BATCH_LIST_SQL);
+			statement = connection.prepareStatement(READ_FACULTY_LIST_SQL);
 
-			resultSet = statement.executeQuery();
+			rsFaculty = statement.executeQuery();
 			
-			if(resultSet.getMetaData().getColumnCount() > 0){
+			if(rsFaculty.getMetaData().getColumnCount() > 0){
 				
-				while(resultSet.next()){
+				while(rsFaculty.next()){
 					
 					FacultyDTO facultyDTO = new FacultyDTO();
+					facultyDTO.setId(rsFaculty.getString("fid"));
+					facultyDTO.setFirstName(rsFaculty.getString("fname").split(" ")[0]);
+					facultyDTO.setLastName(rsFaculty.getString("fname").split(" ")[0]);
+					facultyDTO.setGender(rsFaculty.getString("gender"));
+					facultyDTO.setDob(rsFaculty.getString("dob"));
+					facultyDTO.setPrimaryEmail(rsFaculty.getString("pemail"));
+					facultyDTO.setSecondaryEmail(rsFaculty.getString("semail"));
+					facultyDTO.setPrimaryContact(rsFaculty.getString("pphone"));
+					facultyDTO.setSecondaryContact(rsFaculty.getString("sphone"));
+					facultyDTO.setDoj(rsFaculty.getString("doj"));
+					facultyDTO.setSalary(rsFaculty.getDouble("salary"));
 					
-					//code to be done
+					BatchDTO batchDTO = new BatchDTO();
+					batchDTO.setId(rsFaculty.getString("bid"));
+					batchDTO.setName(rsFaculty.getString("bname"));
+					batchDTO.setCategory(rsFaculty.getString("category"));
+					batchDTO.setStartDate(rsFaculty.getString("startdate"));
+					batchDTO.setEndDate(rsFaculty.getString("enddate"));
+					batchDTO.setTime(rsFaculty.getString("time"));
+					batchDTO.setHours(rsFaculty.getDouble("hour"));
+					
+					facultyDTO.setBatch(batchDTO);
+					
 					facultyList.add(facultyDTO);
 					
 				}
@@ -47,8 +69,8 @@ public class FacultyDAO implements IFacultyDAO {
 			
 		}
 		finally{
-			if(resultSet != null){
-				resultSet.close();
+			if(rsFaculty != null){
+				rsFaculty.close();
 			}
 			
 			if(statement != null){
@@ -73,7 +95,7 @@ public class FacultyDAO implements IFacultyDAO {
 		try{
 			connection = getConnection();
 			connection.setAutoCommit(false);
-			statement = connection.prepareStatement(ADD_BATCH_SQL);
+			statement = connection.prepareStatement(ADD_FACULTY_SQL);
 			
 			// code to be done
 			

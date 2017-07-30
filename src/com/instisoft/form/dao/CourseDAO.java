@@ -68,7 +68,7 @@ public class CourseDAO implements ICourseDAO {
 							facultyDTO.setPrimaryContact(rsFaculty.getString("pphone"));
 							facultyDTO.setSecondaryContact(rsFaculty.getString("sphone"));
 							facultyDTO.setDoj(rsFaculty.getString("doj"));
-							facultyDTO.setSalary(rsFaculty.getString("salary"));
+							facultyDTO.setSalary(rsFaculty.getDouble("salary"));
 							facultyDTO.setStatus(rsFaculty.getString("status"));
 							
 							facultySet.add(facultyDTO);

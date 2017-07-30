@@ -13,14 +13,14 @@ public interface ICommonSQL {
 	final String ADD_FACULTY$ADDRESS_SQL="INSERT INTO faculty_address_mapping(fid,aid) VALUES(?,?)";
 	final String ADD_FACULTY$BATCH_SQL = "INSERT INTO faculty_batch_mapping(fid,bid) VALUES(?,?)";
 	final String READ_FACULTY_NAMES_SQL = "SELECT fname FROM faculty_master";
-	final String READ_FACULTY_LIST_SQL = "SELECT * FROM faculty_master f, faculty_batch_mapping fb,  batches b, faculty_address_mapping fa, address a WHERE f.fname=? and f.fid = fb.fid and fb.bid = b.bid";
-	final String FIND_FACULTY$BATCH_SQL = "SELECT * FROM faculty_master f,  batches b, faculty_batch_mapping fb WHERE f.fname=? and f.fid = fb.fid and fb.bid = b.bid)";
+	final String READ_FACULTY_LIST_SQL = "SELECT * FROM faculty_master f, faculty_batch_mapping fb,  batches b, faculty_address_mapping fa, addresses a WHERE f.fid = fb.fid and fb.bid = b.bid and f.fid = fa.fid and fa.aid = a.aid";
+	final String FIND_FACULTY$BATCH_SQL = "SELECT * FROM faculty_master f,  batches b, faculty_batch_mapping fb WHERE f.fname=? and f.fid = fb.fid and fb.bid = b.bid";
 	final String FIND_FACULTY_SQL = "SELECT * FROM faculty_master WHERE f.fname=?";
 	
 	
 	final String ADD_ADDRESS_SQL = "INSERT INTO addresses(loc,city,state,country,pincode,status) VALUES(?,?,?,?,?,?)";
-	final String FIND_ADDRESS_WITH_PIN_SQL = "SELECT * FROM address WHERE loc=? and pincode=?";
-	final String FIND_ADDRESS_WITHOUT_PIN_SQL = "SELECT * FROM address WHERE loc=?";
+	final String FIND_ADDRESS_WITH_PIN_SQL = "SELECT * FROM addresses WHERE loc=? and pincode=?";
+	final String FIND_ADDRESS_WITHOUT_PIN_SQL = "SELECT * FROM addresses WHERE loc=?";
 	
 	final String ADD_STUDENT_SQL = "INSERT INTO student_master(sid,sname,gender,dob,pemail,semail,pphone,sphone,fname,femail,fphone,mname,memail,mphone,doj) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	final String READ_STUDENT_NAMES_SQL = "SELECT sname FROM student_master";
