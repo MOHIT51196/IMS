@@ -17,6 +17,7 @@ import com.instisoft.form.views.AdmissionFormPanel;
 import com.instisoft.form.views.BatchFormPanel;
 import com.instisoft.form.views.CourseFormPanel;
 import com.instisoft.form.views.EventFormPanel;
+import com.instisoft.form.views.FacultyFormPanel;
 import com.instisoft.graph.views.GraphPanel;
 import com.instisoft.table.views.BatchTablePanel;
 import com.instisoft.table.views.CourseTablePanel;
@@ -70,7 +71,7 @@ public class MenuBar extends JMenuBar {
 		HolidaySchedulePanel holidaySchedulePanel = new HolidaySchedulePanel();
 		StudentRecord studentRecord = new StudentRecord();
 		FacultyTablePanel facultyTablePanel = FacultyTablePanel.newInstance();
-		
+		FacultyFormPanel facultyFormPanel = new FacultyFormPanel();
 		
 		
 		
@@ -193,6 +194,11 @@ public class MenuBar extends JMenuBar {
 		
 		JMenuItem addFaculty = new JMenuItem("Add new Faculty");
 		setItemColor(addFaculty);
+		addFaculty.addActionListener((event)->{
+			
+			dashBoard.renderPanel("Add Faculty", facultyFormPanel);
+			
+		});
 		faculty.add(addFaculty);
 		
 		
