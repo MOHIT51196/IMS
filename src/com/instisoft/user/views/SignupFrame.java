@@ -121,6 +121,7 @@ public class SignupFrame extends JFrame {
 							System.out.println("REGISTERED SUCCESSFULLY");
 							
 							new DashBoard();
+							DashBoard.setUserDTO(userDTO);
 							
 							((JFrame)((JButton)e.getSource()).getTopLevelAncestor()).dispose();
 							callingFrame.dispose();

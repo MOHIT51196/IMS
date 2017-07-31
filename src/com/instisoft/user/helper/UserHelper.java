@@ -45,4 +45,17 @@ public class UserHelper {
 		
 		return false;
 	}
+	
+	public boolean doRecovery(UserDTO userDTO) throws ClassNotFoundException, SQLException{
+		
+		if(usernameValidation(userDTO) ){
+//			some specific validations are off write now
+			
+			return userDAO.readDetails(userDTO);
+		}
+		
+		System.out.println("Username is not Validated");
+		
+		return false;
+	}
 }

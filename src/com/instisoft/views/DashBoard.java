@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.instisoft.user.dto.UserDTO;
 import com.instisoft.utils.GUILookAndFeel;
 
 public class DashBoard extends JFrame {
@@ -34,6 +35,7 @@ public class DashBoard extends JFrame {
 	private NavPanel menuNavPanel;
 	private JLabel lblInstisoft;
 	
+	private static UserDTO userDTO;
 	
 	private static final int MAX_PREFERRED_HEIGHT = 653;
 	
@@ -45,6 +47,15 @@ public class DashBoard extends JFrame {
 		
 	}
 	
+	public static UserDTO getUserDTO() {
+		return userDTO;
+	}
+
+	public static void setUserDTO(UserDTO userDTO) {
+		DashBoard.userDTO = userDTO;
+	}
+
+
 	public DashBoard() {
 		super(TITLE + " Dashboard");
 		

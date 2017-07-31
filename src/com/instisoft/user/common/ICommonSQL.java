@@ -7,4 +7,5 @@ public interface ICommonSQL {
 	final String LOGIN_SQL = "select userid,password from user_master where username=? and password=?";
 	final String REGISTER_SQL = "insert into user_master(username,password,name,gender,dob,email,phone,auth_status,user_status,role_status) values(?,?,?,?,?,?,?,?,?,?)";
 	
+	final String RECOVERY_SQL = "select * from user_master where username=?";
 }

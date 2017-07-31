@@ -1,9 +1,6 @@
 package com.instisoft.user.dao;
 import static com.instisoft.user.common.ICommonDAO.getConnection;
-
-
-import static com.instisoft.user.common.ICommonSQL.LOGIN_SQL;
-import static com.instisoft.user.common.ICommonSQL.REGISTER_SQL;
+import static com.instisoft.user.common.ICommonSQL.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,6 +29,49 @@ public class UserDAO implements IUserDAO  {
 			resultSet = statement.executeQuery();
 			
 			if(resultSet.next()){
+				
+				return true;
+			}
+		}
+		finally{
+			if(resultSet != null){
+				resultSet.close();
+			}
+			
+			if(statement != null){
+				statement.close();
+			}
+			
+			if(connection != null){
+				connection.close();
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean readDetails(UserDTO userDTO) throws ClassNotFoundException, SQLException {
+		
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet =null;
+		
+		try{
+			connection = getConnection();
+			statement = connection.prepareStatement(RECOVERY_SQL);
+			statement.setString(1, userDTO.getUsername());
+			
+			
+			resultSet = statement.executeQuery();
+			
+			if(resultSet.next()){
+				userDTO.setFirstName(resultSet.getString("name").split(" ")[0]);
+				userDTO.setGender(resultSet.getString("gender"));
+				userDTO.setDob(resultSet.getString("dob"));
+				userDTO.setEmail(resultSet.getString("email"));
+				userDTO.setPhone(resultSet.getString("phone"));
+//				userDTO.setPassword(resultSet.getString("password"));
+				
 				return true;
 			}
 		}
