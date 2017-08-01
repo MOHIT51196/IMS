@@ -6,6 +6,7 @@ import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -15,13 +16,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 public class HomeScreenPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private FrontFeaturesPanel featuresPanel;
+	private FrontFeaturesPanel2 featuresPanel;
 	private JPanel socialLinkPanel;
 	
 	static Desktop desktop = Desktop.getDesktop();
@@ -31,6 +33,38 @@ public class HomeScreenPanel extends JPanel {
 	final String GOOGLE_PLUS = "googleplus";
 	final String YOUTUBE = "youtube";
 	
+	private int animDisp = 10;	// FOR BUTTON ANIMATION DISPLACEMENT
+	private int homescreenAnimIndex = 0;
+	private Timer btnAnimThread, swipAnimThread ;
+	private JButton btnShowNav;
+
+	// ANIMATION INITIALIZATION BLOCK
+	{
+		// FRONT FEATURE SCREEN SWIP ANIMATION
+		swipAnimThread = new Timer(70, (animEvent)->{
+			homescreenAnimIndex+=31;
+			// DONOT CHANGE THE DIMENSION LOGIC HERE
+			// to swip the half frontFeature panel to left side
+			if(this.featuresPanel.getLocation().x <= (-this.featuresPanel.getWidth()/2)){
+				swipAnimThread.stop();
+				
+			}
+			else{
+				
+				this.featuresPanel.setLocation(this.featuresPanel.getLocation().x - homescreenAnimIndex, this.featuresPanel.getLocation().y);
+				System.out.println(this.getFeaturesPanel().getLocation().x);
+			}
+			
+		});
+		
+
+//		FOR BUTTON MOTION ANIMATION
+		btnAnimThread = new Timer(250, (event)->{
+			btnShowNav.setLocation(btnShowNav.getLocation().x + animDisp, btnShowNav.getLocation().y);
+			animDisp = -animDisp;
+		});
+	}
+	
 	
 	public HomeScreenPanel() {
 
@@ -39,10 +73,32 @@ public class HomeScreenPanel extends JPanel {
 		setBackground(null);
 		setOpaque(false);
 		
+		btnShowNav = new JButton(new ImageIcon("resources/side_nav_button.png"));
+		btnShowNav.setBounds(1085, 250, 30, 30);
+		btnShowNav.setFocusable(false);
+		btnShowNav.setContentAreaFilled(false);
+		btnShowNav.setOpaque(false);
+		btnShowNav.setBorderPainted(false);
+		btnShowNav.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnShowNav.addActionListener((event)->{
+			btnShowNav.setVisible(false);
+			Toolkit.getDefaultToolkit().sync();  //to make animation smooth
+			
+			
+			swipAnimThread.start();
+			
+		});
+		
+		add(btnShowNav);
+		
 		// FRONT FACE PANEL
-		featuresPanel = new FrontFeaturesPanel();
+		featuresPanel = new FrontFeaturesPanel2();
 		featuresPanel.setLocation(0, 40);
 		add(featuresPanel);
+		
+	
+		btnAnimThread.start();
+		
 		
 		// SOCIAL LINKS PANEL
 		socialLinkPanel = new JPanel();
@@ -69,6 +125,19 @@ public class HomeScreenPanel extends JPanel {
 		
 	}
 	
+
+	public JButton getBtnShowNav() {
+		return btnShowNav;
+	}
+
+
+
+	public void setBtnShowNav(JButton btnShowNav) {
+		this.btnShowNav = btnShowNav;
+	}
+
+
+	
 	public void setSocialButtonStyle(JButton button, String socialMediaName){
 		button.setIcon(new ImageIcon("resources/icon_" + socialMediaName + ".png"));
 		button.setFocusable(false);
@@ -93,6 +162,15 @@ public class HomeScreenPanel extends JPanel {
 	}
 	
 	
+	
+	public FrontFeaturesPanel2 getFeaturesPanel() {
+		return featuresPanel;
+	}
+
+	public void setFeaturesPanel(FrontFeaturesPanel2 featuresPanel) {
+		this.featuresPanel = featuresPanel;
+	}
+
 	/**
 	 * Launch the application.
 	 */

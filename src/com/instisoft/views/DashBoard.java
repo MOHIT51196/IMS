@@ -1,14 +1,12 @@
 package com.instisoft.views;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,12 +28,13 @@ public class DashBoard extends JFrame {
 
 	private final static String TITLE = ResourceBundle.getBundle("config").getString("project_title");
 	private MenuBar menuBar;
-	private JButton btnShowNav;
 	private ArrayList<JPanel> panelList;
 	private NavPanel menuNavPanel;
 	private JLabel lblInstisoft;
 	
 	private static UserDTO userDTO;
+	
+
 	
 	private static final int MAX_PREFERRED_HEIGHT = 653;
 	
@@ -91,22 +90,6 @@ public class DashBoard extends JFrame {
 		lblInstisoft.setBounds(1212, 6, 144, 34);
 		contentPane.add(lblInstisoft);
 		
-
-
-		btnShowNav = new JButton(new ImageIcon("resources/side_nav_button.png"));
-		btnShowNav.setBounds(0, 160, 30, 30);
-		btnShowNav.setFocusable(false);
-		btnShowNav.setContentAreaFilled(false);
-		btnShowNav.setOpaque(false);
-		btnShowNav.setBorderPainted(false);
-		btnShowNav.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnShowNav.addActionListener((event)->{
-			((JButton)event.getSource()).setVisible(false);
-			menuNavPanel.setVisible(true);
-		});
-		
-//		contentPane.add(btnShowNav);		// Strict Navigation ON
-		
 		menuNavPanel = new NavPanel(this);
 		menuNavPanel.setLocation(0, 0);
 		menuNavPanel.setVisible(true);		// Strict Navigation ON
@@ -129,7 +112,6 @@ public class DashBoard extends JFrame {
 		containerPane.setOpaque(false);
 		containerPane.setLayout(null);
 		contentPane.add(containerPane);
-		
 		
 		
 		lblHeader = new JLabel("Welcome to Dashboard");
@@ -183,17 +165,6 @@ public class DashBoard extends JFrame {
 	
 	
 	
-	public JButton getBtnShowNav() {
-		return btnShowNav;
-	}
-
-
-
-	public void setBtnShowNav(JButton btnShowNav) {
-		this.btnShowNav = btnShowNav;
-	}
-
-
 
 	public JLabel getLblInstisoft() {
 		return lblInstisoft;
