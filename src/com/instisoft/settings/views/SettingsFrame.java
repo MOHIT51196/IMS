@@ -85,8 +85,8 @@ public class SettingsFrame extends JFrame {
 		contentPane.add(btnSaveChanges);
 		
 		JLabel lblEmail = new JLabel("Email :");
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblEmail.setForeground(Color.WHITE);
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEmail.setForeground(Color.LIGHT_GRAY);
 		lblEmail.setBounds(150, 16, 46, 14);
 		contentPane.add(lblEmail);
 		
@@ -109,14 +109,14 @@ public class SettingsFrame extends JFrame {
 		textField_Password.setColumns(10);
 		
 		JLabel lblContactNo = new JLabel("Contact No. :");
-		lblContactNo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblContactNo.setForeground(Color.WHITE);
+		lblContactNo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblContactNo.setForeground(Color.LIGHT_GRAY);
 		lblContactNo.setBounds(150, 57, 96, 14);
 		contentPane.add(lblContactNo);
 		
 		JLabel lblPassword = new JLabel("Password :");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPassword.setForeground(Color.WHITE);
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblPassword.setForeground(Color.LIGHT_GRAY);
 		lblPassword.setBounds(150, 100, 86, 14);
 		contentPane.add(lblPassword);
 		
@@ -139,26 +139,26 @@ public class SettingsFrame extends JFrame {
 		contentPane.add(btnResetDefault);
 		
 		lblFont = new JLabel("Font :");
-		lblFont.setForeground(Color.WHITE);
-		lblFont.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblFont.setForeground(Color.LIGHT_GRAY);
+		lblFont.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblFont.setBounds(150, 141, 46, 14);
 		contentPane.add(lblFont);
 		
 		lblTheme = new JLabel("Theme :");
-		lblTheme.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblTheme.setForeground(Color.WHITE);
+		lblTheme.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTheme.setForeground(Color.LIGHT_GRAY);
 		lblTheme.setBounds(150, 182, 86, 14);
 		contentPane.add(lblTheme);
 		
 		lbl2stepLoginAuthentication = new JLabel("        2-Step Login Authentication");
 		lbl2stepLoginAuthentication.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lbl2stepLoginAuthentication.setForeground(Color.WHITE);
+		lbl2stepLoginAuthentication.setForeground(Color.LIGHT_GRAY);
 		lbl2stepLoginAuthentication.setBounds(150, 283, 242, 19);
 		contentPane.add(lbl2stepLoginAuthentication);
 		
 		btnChangeEmail = new JButton("Change..");
 		btnChangeEmail.setBounds(402, 14, 89, 23);
-		btnChangeEmail.setForeground(new Color( 18, 30, 49));
+		//btnChangeEmail.setForeground(new Color( 18, 30, 49));
 		contentPane.add(btnChangeEmail);
 		btnChangeEmail.addActionListener((event)->{
 			panel.setVisible(true);
@@ -168,28 +168,29 @@ public class SettingsFrame extends JFrame {
 		
 		btnChangeContact = new JButton("Change..");
 		btnChangeContact.setBounds(402, 55, 89, 23);
-		btnChangeContact.setForeground(new Color( 18, 30, 49));
+		//btnChangeContact.setForeground(new Color( 18, 30, 49));
 		contentPane.add(btnChangeContact);
+		
 		
 		btnChangePassword = new JButton("Change..");
 		btnChangePassword.setBounds(402, 98, 89, 23);
-		btnChangePassword.setForeground(new Color( 18, 30, 49));
+		//btnChangePassword.setForeground(new Color( 18, 30, 49));
 		contentPane.add(btnChangePassword);
 		
 		btnChangeFont = new JButton("Change..");
 		btnChangeFont.setBounds(402, 137, 89, 23);
-		btnChangeFont.setForeground(new Color( 18, 30, 49));
+		//btnChangeFont.setForeground(new Color( 18, 30, 49));
 		contentPane.add(btnChangeFont);
 		
 		btnChangeTheme = new JButton("Change..");
 		btnChangeTheme.setBounds(402, 178, 89, 23);
-		btnChangeTheme.setForeground(new Color( 18, 30, 49));
+		//btnChangeTheme.setForeground(new Color( 18, 30, 49));
 		contentPane.add(btnChangeTheme);
 		
 		JToggleButton toggleButton = new JToggleButton();
 		toggleButton.setForeground(Color.WHITE);
 		toggleButton.setHorizontalAlignment(SwingConstants.LEADING);
-		toggleButton.setBounds(402, 275, 157, 40);
+		toggleButton.setBounds(400, 272, 157, 40);
 		toggleButton.setFocusable(false);
 		toggleButton.setContentAreaFilled(false);
 		toggleButton.setOpaque(false);
